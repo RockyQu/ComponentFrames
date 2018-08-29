@@ -10,7 +10,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/App" />
             <option value="$PROJECT_DIR$/ComponentSDK" />
+            <option value="$PROJECT_DIR$/ComponentService" />
             <option value="$PROJECT_DIR$/Module-Login" />
+            <option value="$PROJECT_DIR$/Module-User" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

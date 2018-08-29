@@ -1,7 +1,9 @@
-package me.component.frame;
+package me.component.frame.mvp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import me.component.frame.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,24 +1,16 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
-
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
     defaultConfig {
-        applicationId rootProject.ext.frame["applicationId"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-            }
-        }
     }
 
     compileOptions {
@@ -26,13 +18,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-        disable "ResourceType"
-        disable 'MissingTranslation'
-
-        abortOnError false
-        checkReleaseBuilds false
+    dataBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -44,11 +31,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    if (!isBuildModule.toBoolean()) {
-        runtimeOnly project(":Module-Login")
-    }
-
-    implementation project(":ComponentService")
+    // 引入 ComponentSDK
+    api project(":ComponentSDK")
 }
