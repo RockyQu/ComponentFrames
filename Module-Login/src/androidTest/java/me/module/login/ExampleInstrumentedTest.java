@@ -1,4 +1,4 @@
-package me.component.sdk;
+package me.module.login;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("me.component.sdk.test", appContext.getPackageName());
+        assertEquals("me.module.login.test", appContext.getPackageName());
     }
 }

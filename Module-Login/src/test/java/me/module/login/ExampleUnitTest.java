@@ -1,4 +1,4 @@
-package me.component.sdk;
+package me.module.login;
 
 import org.junit.Test;
 

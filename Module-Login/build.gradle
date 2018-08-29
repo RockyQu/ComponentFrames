@@ -1,0 +1,12 @@
+apply from:"../common_module.gradle"
+
+android {
+    resourcePrefix "login_"
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    // 引入 ComponentSDK
+    api project(":ComponentSDK")
+}
