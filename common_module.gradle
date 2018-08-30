@@ -52,6 +52,10 @@ android {
         checkReleaseBuilds false
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']

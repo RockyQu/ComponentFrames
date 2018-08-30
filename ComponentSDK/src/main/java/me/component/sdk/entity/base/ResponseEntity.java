@@ -1,4 +1,4 @@
-package me.component.service.entity;
+package me.component.sdk.entity.base;
 
 import com.google.gson.annotations.SerializedName;
 

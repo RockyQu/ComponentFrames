@@ -35,6 +35,10 @@ android {
         checkReleaseBuilds false
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -48,7 +52,8 @@ dependencies {
 
     if (!isBuildModule.toBoolean()) {
         runtimeOnly project(":Module-Login")
+        runtimeOnly project(":Module-User")
     }
 
-    implementation project(":ComponentService")
+    implementation project(":ComponentSDK")
 }

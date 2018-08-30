@@ -9,9 +9,9 @@ import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
-import me.mvp.demo.R;
-import me.mvp.demo.databinding.ActivityLoginBinding;
-import me.mvp.demo.entity.User;
+import me.component.service.entity.User;
+import me.module.login.R;
+import me.module.login.databinding.ActivityLoginBinding;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;
@@ -59,23 +59,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBin
      * @return
      */
     private boolean inputCheck(int flag) {
-        switch (flag) {
-            case R.id.btn_submit:// 登录
+        if (flag == R.id.btn_submit) {
+            if (StringUtils.isEmpty(view.edtAccount.getText().toString().trim())) {
+                Toaster.with(this).setMessage("输入手机号码").show();
+                return false;
+            }
 
-                if (StringUtils.isEmpty(view.edtAccount.getText().toString().trim())) {
-                    Toaster.with(this).setMessage("输入手机号码").show();
-                    return false;
-                }
-
-                if (StringUtils.isEmpty(view.edtPassword.getText().toString().trim())) {
-                    Toaster.with(this).setMessage("输入密码").show();
-                    return false;
-                }
-
-                break;
-            default:
-                break;
+            if (StringUtils.isEmpty(view.edtPassword.getText().toString().trim())) {
+                Toaster.with(this).setMessage("输入密码").show();
+                return false;
+            }
         }
+
         return true;
     }
 
