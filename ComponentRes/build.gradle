@@ -18,18 +18,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildTypes {
-        debug {
-            buildConfigField "boolean", "DEBUG_FLAG", "true"
-            minifyEnabled false
-        }
-        release {
-            buildConfigField "boolean", "DEBUG_FLAG", "false"
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
     allprojects {
         repositories {
             jcenter()
@@ -38,11 +26,11 @@ android {
             mavenCentral()
         }
     }
+
+    resourcePrefix "public_"
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-
-    // 引入 ComponentRes
-    api project(":ComponentRes")
+    // 引入基础模块 Github → https://github.com/RockyQu/MVPFrames
+    api 'me.frame:MVPFrames:2.3.0'
 }

@@ -1,7 +1,7 @@
 package me.module.login.login;
 
-import me.component.service.entity.base.ResponseEntity;
-import me.component.service.entity.User;
+import me.component.sdk.entity.User;
+import me.component.sdk.entity.base.ResponseEntity;
 import me.mvp.frame.di.component.AppComponent;
 import me.mvp.frame.frame.BasePresenter;
 import me.mvp.frame.frame.Message;

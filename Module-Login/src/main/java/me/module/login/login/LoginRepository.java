@@ -1,7 +1,7 @@
 package me.module.login.login;
 
-import me.component.service.entity.User;
-import me.component.service.entity.base.ResponseEntity;
+import me.component.sdk.entity.User;
+import me.component.sdk.entity.base.ResponseEntity;
 import me.module.login.app.api.ApiLogin;
 import me.mvp.frame.frame.IModel;
 import me.mvp.frame.integration.IRepositoryManager;

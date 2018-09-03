@@ -1,7 +1,7 @@
 package me.module.login.app.api;
 
-import me.component.service.entity.User;
-import me.component.service.entity.base.ResponseEntity;
+import me.component.sdk.entity.User;
+import me.component.sdk.entity.base.ResponseEntity;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

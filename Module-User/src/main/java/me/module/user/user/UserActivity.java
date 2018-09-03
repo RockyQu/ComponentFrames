@@ -3,7 +3,6 @@ package me.module.user.user;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
-import me.component.service.entity.User;
 import me.module.user.R;
 import me.module.user.databinding.ActivityUserBinding;
 import me.mvp.frame.base.BaseActivity;

@@ -1,1 +1,1 @@
-include ':App', ':ComponentSDK', ':Module-Login', ':Module-User'
+include ':App', ':ComponentSDK', ':Module-Login', ':Module-User', ':ComponentRes'

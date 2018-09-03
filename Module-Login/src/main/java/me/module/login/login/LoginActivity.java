@@ -9,7 +9,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
-import me.component.service.entity.User;
+import me.component.sdk.entity.User;
 import me.module.login.R;
 import me.module.login.databinding.ActivityLoginBinding;
 import me.mvp.frame.base.BaseActivity;
