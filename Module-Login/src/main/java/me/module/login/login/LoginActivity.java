@@ -17,10 +17,12 @@ import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;
 import me.mvp.frame.utils.StringUtils;
 import me.mvp.frame.widget.Toaster;
+import me.router.annotation.Router;
 
 /**
  * 登录页面
  */
+@Router
 public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBinding> implements IView {
 
     // 当前登录用户信息

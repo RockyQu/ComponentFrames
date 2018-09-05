@@ -45,4 +45,7 @@ dependencies {
 
     // 引入 ComponentRes
     api project(":ComponentRes")
+
+    // 引入路由
+    api project(":Router-api")
 }
