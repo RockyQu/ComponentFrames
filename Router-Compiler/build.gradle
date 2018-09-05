@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
 dependencies {
-    api project(":Router-Annotation")
+    api project(':Router-annotation')
 }
 
 sourceCompatibility = "1.8"

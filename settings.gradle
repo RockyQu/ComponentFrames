@@ -1,1 +1,1 @@
-include ':App', ':ComponentSDK', ':Module-Login', ':Module-User', ':ComponentRes', ':Router-Annotation', ':Router-Compiler', ':Router-Api'
+include ':App', ':ComponentSDK', ':Module-Login', ':Module-User', ':ComponentRes', ':Router-annotation', ':Router-compiler', ':Router-api'
