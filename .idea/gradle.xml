@@ -13,9 +13,9 @@
             <option value="$PROJECT_DIR$/ComponentSDK" />
             <option value="$PROJECT_DIR$/Module-Login" />
             <option value="$PROJECT_DIR$/Module-User" />
-            <option value="$PROJECT_DIR$/Router-Annotation" />
-            <option value="$PROJECT_DIR$/Router-Api" />
-            <option value="$PROJECT_DIR$/Router-Compiler" />
+            <option value="$PROJECT_DIR$/Router-annotation" />
+            <option value="$PROJECT_DIR$/Router-api" />
+            <option value="$PROJECT_DIR$/Router-compiler" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

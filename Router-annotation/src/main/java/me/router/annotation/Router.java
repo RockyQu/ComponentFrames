@@ -1,4 +1,4 @@
 package me.router.annotation;
 
-public class MyClass {
+public @interface Router {
 }
