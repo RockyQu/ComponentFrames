@@ -5,6 +5,7 @@ import com.google.auto.service.AutoService;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -43,17 +44,21 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     private Types mTypeUtils;
     private Elements mElementUtils;
     private Filer mFiler;
-    private Messager mMessager;
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
 
+        // Attempt to get user configuration [moduleName]
+        Map<String, String> options = processingEnv.getOptions();
+//        if (MapUtils.isNotEmpty(options)) {
+//            String moduleName = options.get(KEY_MODULE_NAME);
+//        }
+
         //初始化我们需要的基础工具
         mTypeUtils = processingEnv.getTypeUtils();
         mElementUtils = processingEnv.getElementUtils();
         mFiler = processingEnv.getFiler();
-        mMessager = processingEnv.getMessager();
 
         logger = new RouterLogger(processingEnv.getMessager());
 
@@ -64,16 +69,16 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         //这里开始处理我们的注解解析了，以及生成Java文件
         if (set == null || set.isEmpty()) {
-            info(">>> set is null... <<<");
+            logger.info(">>> set is null... <<<");
             return true;
         }
 
-        info(">>> Found field, start... <<<");
+        logger.info(">>> Found field, start... <<<");
 
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ComponentRouter.class);
 
         if (elements == null || elements.isEmpty()) {
-            info(">>> elements is null... <<<");
+            logger.info(">>> elements is null... <<<");
             return true;
         }
 
@@ -82,8 +87,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
             // 检查被注解为@Factory的元素是否是一个类
             if (annotatedElement.getKind() != ElementKind.CLASS) {
-                error(annotatedElement, "Only classes can be annotated with @%s",
-                        ComponentRouter.class.getSimpleName());
+                logger.error("Only classes can be annotated with "+ ComponentRouter.class.getSimpleName());
                 return true; // 退出处理
             }
 
@@ -128,19 +132,6 @@ public class ComponentRouterProcessor extends AbstractProcessor {
             // that occur from the file already existing after its first run, this is normal
         }
 
-        info(">>> analysisAnnotated is finish... <<<");
-    }
-
-    private void error(Element e, String msg, Object... args) {
-        mMessager.printMessage(
-                Diagnostic.Kind.ERROR,
-                String.format(msg, args),
-                e);
-    }
-
-    private void info(String msg, Object... args) {
-        mMessager.printMessage(
-                Diagnostic.Kind.NOTE,
-                String.format(msg, args));
+        logger.info(">>> analysisAnnotated is finish... <<<");
     }
 }
