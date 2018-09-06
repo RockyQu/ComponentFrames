@@ -16,12 +16,14 @@ publish {
 }
 // End 以上这段功能是用来上传至代码库
 
+compileJava {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+}
+
 dependencies {
     api project(':Router-annotation')
 
     api 'com.google.auto.service:auto-service:1.0-rc3'
     api 'com.squareup:javapoet:1.11.0'
 }
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"

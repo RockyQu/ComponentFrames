@@ -6,9 +6,11 @@ import android.support.annotation.NonNull;
 import android.widget.Button;
 
 import com.jakewharton.rxbinding2.view.RxView;
+import com.zyao89.demoprocessor.auto.AAAAA$AAA;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.functions.Consumer;
 import me.component.sdk.entity.User;
 import me.module.login.R;
 import me.module.login.databinding.ActivityLoginBinding;
@@ -42,7 +44,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBin
         // 登录
         RxView.clicks(view.btnSubmit)
                 .throttleFirst(1000, TimeUnit.MILLISECONDS)
-                .subscribe(v -> login());
+                .subscribe(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object v) {
+                        LoginActivity.this.login();
+                    }
+                });
     }
 
     /**

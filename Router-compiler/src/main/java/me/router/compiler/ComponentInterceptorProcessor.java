@@ -1,12 +1,26 @@
 package me.router.compiler;
 
+import com.google.auto.service.AutoService;
+
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 
+import static me.router.compiler.utils.Consts.ANNOTATION_COMPONENT_INTERCEPTOR;
+
+/**
+ *
+ */
+@AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedAnnotationTypes({ANNOTATION_COMPONENT_INTERCEPTOR})
 public class ComponentInterceptorProcessor extends AbstractProcessor {
 
     @Override

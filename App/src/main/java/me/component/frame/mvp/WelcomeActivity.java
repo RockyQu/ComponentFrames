@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import me.component.frame.R;
 import me.component.frame.mvp.main.MainActivity;
 import me.component.sdk.core.AppConfiguration;
@@ -57,9 +58,12 @@ public class WelcomeActivity extends BaseActivity {
     private void startNextActivity() {
         Observable.timer(1500, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                    finish();
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        WelcomeActivity.this.startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        WelcomeActivity.this.finish();
+                    }
                 });
     }
 

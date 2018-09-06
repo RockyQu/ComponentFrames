@@ -27,8 +27,15 @@ import javax.tools.JavaFileObject;
 import me.router.annotation.ComponentRouter;
 import me.router.compiler.utils.RouterLogger;
 
+import static me.router.compiler.utils.Consts.ANNOTATION_COMPONENT_ROUTER;
+import static me.router.compiler.utils.Consts.SEPARATOR;
+
+/**
+ *
+ */
 @AutoService(Processor.class)
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedAnnotationTypes({ANNOTATION_COMPONENT_ROUTER})
 public class ComponentRouterProcessor extends AbstractProcessor {
 
     private RouterLogger logger;
@@ -37,16 +44,6 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     private Elements mElementUtils;
     private Filer mFiler;
     private Messager mMessager;
-
-
-    private static final String SUFFIX = "$$ZYAO";
-
-    @Override
-    public Set<String> getSupportedAnnotationTypes() {
-        Set<String> annotations = new LinkedHashSet<>();
-        annotations.add(ComponentRouter.class.getCanonicalName());
-        return annotations;
-    }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -98,10 +95,10 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
     private void analysisAnnotated(Element classElement) {
         ComponentRouter annotation = classElement.getAnnotation(ComponentRouter.class);
-        String name = annotation.path();
+        String name = "AAAAA";
 
 //        TypeElement superClassName = mElementUtils.getTypeElement(name);
-        String newClassName = "abcdefg" + SUFFIX;
+        String newClassName = name + SEPARATOR+"AAA";
 
         StringBuilder builder = new StringBuilder()
                 .append("package com.zyao89.demoprocessor.auto;\n\n")
