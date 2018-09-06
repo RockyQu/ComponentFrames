@@ -80,7 +80,6 @@ android {
 dependencies {
     if (isBuildModule.toBoolean()) {
 
-        // 引入路由注解
         annotationProcessor project(":Router-compiler")
 
         // Test

@@ -1,18 +1,30 @@
 apply plugin: 'com.android.library'
 
+// Start 以下这段功能是用来上传至代码库，其他项目不用复制这段代码
+apply plugin: 'com.novoda.bintray-release'
+
+def verCode = 1
+def verName = '0.0.1'
+
+publish {
+    userOrg = 'chinarocky'// 这是代码仓库的账号
+    groupId = 'me.router.api'// 包名
+    artifactId = 'Router'// 项目名
+    publishVersion = verName// 版本号
+    desc = ''
+    website = 'https://github.com/RockyQu/ComponentFrames'
+}
+// End 以上这段功能是用来上传至代码库
+
 android {
-    compileSdkVersion 27
 
-
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode verCode
+        versionName verName
     }
 
     buildTypes {
@@ -21,14 +33,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    api project(':Router-annotation')
+    annotationProcessor project(":Router-compiler")
 }

@@ -1,8 +1,27 @@
 apply plugin: 'java-library'
 
+// Start 以下这段功能是用来上传至代码库，其他项目不用复制这段代码
+apply plugin: 'com.novoda.bintray-release'
+
+def verCode = 1
+def verName = '0.0.1'
+
+publish {
+    userOrg = 'chinarocky'// 这是代码仓库的账号
+    groupId = 'me.router.api'// 包名
+    artifactId = 'Router-compiler'// 项目名
+    publishVersion = verName// 版本号
+    desc = ''
+    website = 'https://github.com/RockyQu/ComponentFrames'
+}
+// End 以上这段功能是用来上传至代码库
+
 dependencies {
     api project(':Router-annotation')
+
+    api 'com.google.auto.service:auto-service:1.0-rc3'
+    api 'com.squareup:javapoet:1.11.0'
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
