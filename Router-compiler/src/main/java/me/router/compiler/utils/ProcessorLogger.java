@@ -8,11 +8,11 @@ import javax.tools.Diagnostic;
  *
  * @see <a href="https://github.com/alibaba/ARouter/blob/master/arouter-compiler/src/main/java/com/alibaba/android/arouter/compiler/utils/Logger.java"></a>
  */
-public class RouterLogger {
+public class ProcessorLogger {
 
     private Messager msg;
 
-    public RouterLogger(Messager messager) {
+    public ProcessorLogger(Messager messager) {
         msg = messager;
     }
 

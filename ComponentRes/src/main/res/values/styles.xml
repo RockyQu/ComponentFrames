@@ -1,15 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="public_AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowAnimationStyle">@style/public_anim_activity</item>
+        <item name="android:windowAnimationStyle">@style/anim_activity</item>
+        <item name="android:windowBackground">@color/activity_bg</item>
     </style>
 
-    <style name="public_anim_activity">
+    <style name="NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="anim_activity">
         <item name="android:activityOpenEnterAnimation">@anim/default_activity_in</item>
         <item name="android:activityOpenExitAnimation">@anim/default_activity_out</item>
         <item name="android:activityCloseEnterAnimation">@anim/default_activity_in</item>

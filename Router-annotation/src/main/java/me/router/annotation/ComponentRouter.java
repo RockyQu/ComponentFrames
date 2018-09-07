@@ -15,5 +15,5 @@ public @interface ComponentRouter {
     /**
      * Path of route
      */
-    String path();
+    String path() default "";
 }

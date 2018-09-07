@@ -4,13 +4,11 @@ import com.google.auto.service.AutoService;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
-import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
@@ -22,11 +20,10 @@ import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
-import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
 import me.router.annotation.ComponentRouter;
-import me.router.compiler.utils.RouterLogger;
+import me.router.compiler.utils.ProcessorLogger;
 
 import static me.router.compiler.utils.Consts.ANNOTATION_COMPONENT_ROUTER;
 import static me.router.compiler.utils.Consts.SEPARATOR;
@@ -39,7 +36,7 @@ import static me.router.compiler.utils.Consts.SEPARATOR;
 @SupportedAnnotationTypes({ANNOTATION_COMPONENT_ROUTER})
 public class ComponentRouterProcessor extends AbstractProcessor {
 
-    private RouterLogger logger;
+    private ProcessorLogger logger;
 
     private Types mTypeUtils;
     private Elements mElementUtils;
@@ -60,7 +57,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
         mElementUtils = processingEnv.getElementUtils();
         mFiler = processingEnv.getFiler();
 
-        logger = new RouterLogger(processingEnv.getMessager());
+        logger = new ProcessorLogger(processingEnv.getMessager());
 
         logger.info(">>> RouteProcessor init. <<<");
     }

@@ -56,7 +56,7 @@ public class WelcomeActivity extends BaseActivity {
      */
     @SuppressLint("CheckResult")
     private void startNextActivity() {
-        Observable.timer(1500, TimeUnit.MILLISECONDS)
+        Observable.timer(2000, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {
                     @Override

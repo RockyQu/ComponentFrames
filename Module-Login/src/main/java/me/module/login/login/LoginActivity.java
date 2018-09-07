@@ -11,6 +11,7 @@ import com.zyao89.demoprocessor.auto.AAAAA$AAA;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.functions.Consumer;
+import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
 import me.module.login.R;
 import me.module.login.databinding.ActivityLoginBinding;
@@ -24,7 +25,7 @@ import me.router.annotation.ComponentRouter;
 /**
  * 登录页面
  */
-@ComponentRouter(path = "/login/LoginActivity")
+@ComponentRouter(path = RouterHub.LOGIN_LOGINACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter, ActivityLoginBinding> implements IView {
 
     // 当前登录用户信息
