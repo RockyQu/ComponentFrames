@@ -2,10 +2,20 @@ package me.router.api;
 
 import android.app.Application;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import me.router.api.core.RouterMeta;
+
 /**
  *
  */
 public class Router {
+
+    /**
+     *
+     */
+    private Map<String, RouterMeta> routerMetaMap = new HashMap<>();
 
     private Router() {
 
@@ -27,5 +37,10 @@ public class Router {
         return SingletonHolder.INSTANCE;
     }
 
-
+    /**
+     * 路由注册
+     */
+    public void register(String key, RouterMeta routerMeta) {
+        routerMetaMap.put(key, routerMeta);
+    }
 }
