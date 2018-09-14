@@ -26,6 +26,10 @@ android {
             mavenCentral()
         }
     }
+
+    android {
+        resourcePrefix "public_"
+    }
 }
 
 dependencies {

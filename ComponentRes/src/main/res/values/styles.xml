@@ -1,25 +1,25 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="public_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowAnimationStyle">@style/anim_activity</item>
-        <item name="android:windowBackground">@color/activity_bg</item>
+        <item name="colorPrimary">@color/public_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/public_colorPrimaryDark</item>
+        <item name="colorAccent">@color/public_colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/public_anim_activity</item>
+        <item name="android:windowBackground">@color/public_activity_bg</item>
     </style>
 
-    <style name="NoActionBar" parent="AppTheme">
+    <style name="public_NoActionBar" parent="public_AppTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="anim_activity">
-        <item name="android:activityOpenEnterAnimation">@anim/default_activity_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/default_activity_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/default_activity_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/default_activity_out</item>
+    <style name="public_anim_activity">
+        <item name="android:activityOpenEnterAnimation">@anim/public_default_activity_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/public_default_activity_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/public_default_activity_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/public_default_activity_out</item>
     </style>
 
 </resources>

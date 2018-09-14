@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@android:color/black</color>
-    <color name="colorPrimaryDark">@android:color/black</color>
-    <color name="colorAccent">@android:color/black</color>
+    <color name="public_colorPrimary">@android:color/black</color>
+    <color name="public_colorPrimaryDark">@android:color/black</color>
+    <color name="public_colorAccent">@android:color/black</color>
 
-    <color name="activity_bg">#303030</color>
+    <color name="public_activity_bg">#303030</color>
 </resources>

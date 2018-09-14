@@ -64,71 +64,26 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        //这里开始处理我们的注解解析了，以及生成Java文件
         if (set == null || set.isEmpty()) {
-            logger.info(">>> set is null... <<<");
             return true;
         }
-
-        logger.info(">>> Found field, start... <<<");
 
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ComponentRouter.class);
 
         if (elements == null || elements.isEmpty()) {
-            logger.info(">>> elements is null... <<<");
             return true;
         }
 
-        // 遍历所有被注解了@Factory的元素
+        // 遍历所有被注解了 @ComponentRouter 的元素
         for (Element annotatedElement : elements) {
-
-            // 检查被注解为@Factory的元素是否是一个类
+            // 检查被注解为 @ComponentRouter 的元素是否是类
             if (annotatedElement.getKind() != ElementKind.CLASS) {
-                logger.error("Only classes can be annotated with "+ ComponentRouter.class.getSimpleName());
-                return true; // 退出处理
+                logger.error(String.format("%s annotations can only be used on classes.", ComponentRouter.class.getSimpleName()));
+                return true;
             }
 
-            analysisAnnotated(annotatedElement);
         }
 
         return true;
-    }
-
-    private void analysisAnnotated(Element classElement) {
-        ComponentRouter annotation = classElement.getAnnotation(ComponentRouter.class);
-        String name = "AAAAA";
-
-//        TypeElement superClassName = mElementUtils.getTypeElement(name);
-        String newClassName = name + SEPARATOR+"AAA";
-
-        StringBuilder builder = new StringBuilder()
-                .append("package com.zyao89.demoprocessor.auto;\n\n")
-                .append("public class ")
-                .append(newClassName)
-                .append(" {\n\n") // open class
-                .append("\tpublic String getMessage() {\n") // open method
-                .append("\t\treturn \"");
-
-        // this is appending to the return statement
-        builder.append("Hello !!! Welcome ").append(name).append(" !\\n");
-
-
-        builder.append("\";\n") // end return
-                .append("\t}\n") // close method
-                .append("}\n"); // close class
-
-
-        try { // write the file
-            JavaFileObject source = mFiler.createSourceFile("com.zyao89.demoprocessor.auto." + newClassName);
-            Writer writer = source.openWriter();
-            writer.write(builder.toString());
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            // Note: calling e.printStackTrace() will print IO errors
-            // that occur from the file already existing after its first run, this is normal
-        }
-
-        logger.info(">>> analysisAnnotated is finish... <<<");
     }
 }

@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.widget.Button;
 
 import com.jakewharton.rxbinding2.view.RxView;
-import com.zyao89.demoprocessor.auto.AAAAA$AAA;
 
 import java.util.concurrent.TimeUnit;
 
