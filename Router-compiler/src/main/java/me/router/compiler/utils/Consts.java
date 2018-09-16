@@ -7,7 +7,7 @@ public final class Consts {
 
     // Common
     public static final String PROJECT = "Router";
-    public static final String PAKCAGE_GENERATE_PATH = "me.router.generate";
+    public static final String PACKAGE_OF_GENERATE_FILE = "me.router.generate.routers";
     public static final String SEPARATOR = "$";
     public static final String ROOT_PACKAGE = "me.router";
     public static final String ROOT_PACKAGE_ANNOTATION = ".annotation";

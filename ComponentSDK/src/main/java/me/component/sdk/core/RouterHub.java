@@ -9,8 +9,8 @@ public interface RouterHub {
      * 组件名
      */
     String APP = "/app";// APP
-    String LOGIN = "/login";// 登录
-    String USER = "/user";// 用户
+    String LOGIN = "/login";// 登录模块
+    String USER = "/user";// 用户模块
 
     /**
      * App 分组
