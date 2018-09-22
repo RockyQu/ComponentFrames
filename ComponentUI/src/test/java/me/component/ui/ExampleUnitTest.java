@@ -1,4 +1,4 @@
-package me.component.res;
+package me.component.ui;
 
 import org.junit.Test;
 

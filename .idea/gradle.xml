@@ -9,8 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/App" />
-            <option value="$PROJECT_DIR$/ComponentRes" />
             <option value="$PROJECT_DIR$/ComponentSDK" />
+            <option value="$PROJECT_DIR$/ComponentUI" />
             <option value="$PROJECT_DIR$/Module-Login" />
             <option value="$PROJECT_DIR$/Module-User" />
             <option value="$PROJECT_DIR$/Router-annotation" />

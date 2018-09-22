@@ -34,5 +34,5 @@ android {
 
 dependencies {
     // 引入基础模块 Github → https://github.com/RockyQu/MVPFrames
-    api 'me.frame:MVPFrames:2.3.0'
+    api 'me.frame:MVPFrames:2.3.1'
 }

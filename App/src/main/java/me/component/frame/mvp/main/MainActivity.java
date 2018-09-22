@@ -13,7 +13,7 @@ import me.mvp.frame.widget.Toaster;
 import me.router.annotation.ComponentRouter;
 
 @ComponentRouter(path = RouterHub.APP_MAINACTIVITY)
-public class MainActivity extends BaseActivity<MainPresenter, ActivityMainBinding> implements IView {
+public class MainActivity extends BaseActivity<MainPresenter> implements IView {
 
     @Override
     public void create(Bundle savedInstanceState) {

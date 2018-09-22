@@ -35,10 +35,6 @@ android {
         checkReleaseBuilds false
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     buildTypes {
         release {
             minifyEnabled false

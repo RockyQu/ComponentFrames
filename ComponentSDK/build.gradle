@@ -43,8 +43,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    // 引入 ComponentRes
-    api project(":ComponentRes")
+    // 引入 ComponentUI
+    api project(":ComponentUI")
 
     // 引入路由
     api project(":Router-api")

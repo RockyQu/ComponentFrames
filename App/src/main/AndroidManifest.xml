@@ -38,7 +38,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/public_AppTheme">
 
@@ -58,6 +57,11 @@
             android:screenOrientation="portrait">
 
         </activity>
+
+        <!-- 渠道配置 -->
+        <meta-data
+            android:name="Channel"
+            android:value="${Channel}" />
 
         <!-- 每个 Module 组件需要声明两个 ConfigModule, ComponentSDK 的 ConfigModule 和 Module 组件自己的 ConfigModule，
         ComponentSDK 的 ConfigModule 含有有每个组件共用的配置信息, ComponentSDK 组件自己的 ConfigModule 含有自己独有的配置

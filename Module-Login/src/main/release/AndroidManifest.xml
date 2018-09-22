@@ -6,6 +6,11 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"/>
 
+        <!-- 渠道配置 -->
+        <meta-data
+            android:name="Channel"
+            android:value="${Channel}" />
+
         <!-- 在组件集成宿主 App 时, 由于宿主 App 已经声明了 ComponentSDK 的公有 ConfigModule, 所以在这里只需要声明业务组件自己的 ConfigModule -->
         <meta-data
             android:name="me.module.login.app.AppConfiguration"
