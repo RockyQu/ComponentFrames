@@ -25,6 +25,12 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode verCode
         versionName verName
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     compileOptions {

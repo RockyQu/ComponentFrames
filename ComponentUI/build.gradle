@@ -11,6 +11,12 @@ android {
         versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     compileOptions {

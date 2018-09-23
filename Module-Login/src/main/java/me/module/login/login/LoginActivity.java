@@ -16,7 +16,6 @@ import io.reactivex.functions.Consumer;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
 import me.module.login.R;
-import me.module.login.databinding.ActivityLoginBinding;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;

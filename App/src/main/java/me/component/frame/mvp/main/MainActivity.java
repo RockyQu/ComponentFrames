@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.os.Bundle;
 
 import me.component.frame.R;
-import me.component.frame.databinding.ActivityMainBinding;
 import me.component.sdk.core.RouterHub;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;

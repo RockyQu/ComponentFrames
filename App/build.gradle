@@ -16,7 +16,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
+                arguments = [ROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -39,6 +39,24 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    flavorDimensions "ComponentFrames"
+
+    // 多渠道打包
+    productFlavors {
+        // 默认渠道
+        Frames {
+            manifestPlaceholders = [Channel: "ComponentFrames"]
+
+            dimension "ComponentFrames"
         }
     }
 

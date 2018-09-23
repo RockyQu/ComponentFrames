@@ -18,8 +18,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-                includeCompileClasspath true
+                arguments = [ROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -60,6 +59,18 @@ android {
             } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
             }
+        }
+    }
+
+    flavorDimensions "ComponentFrames"
+
+    // 多渠道打包
+    productFlavors {
+        // 默认渠道
+        Frames {
+            manifestPlaceholders = [Channel: "ComponentFrames"]
+
+            dimension "ComponentFrames"
         }
     }
 

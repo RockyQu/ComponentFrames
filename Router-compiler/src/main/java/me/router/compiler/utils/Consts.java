@@ -10,9 +10,12 @@ public final class Consts {
     public static final String PACKAGE_OF_GENERATE_FILE = "me.router.generate.routers";
     public static final String SEPARATOR = "$";
     public static final String ROOT_PACKAGE = "me.router";
+
     public static final String ROOT_PACKAGE_ANNOTATION = ".annotation";
     public static final String ROOT_PACKAGE_API = ".api";
     public static final String ROOT_PACKAGE_COMPILER = ".compiler";
+
+    public static final String ROUTER_MODULE_NAME = "ROUTER_MODULE_NAME";
 
     // Annotation
     public static final String ANNOTATION_COMPONENT_INTERCEPTOR = ROOT_PACKAGE + ROOT_PACKAGE_ANNOTATION + ".ComponentInterceptor";
