@@ -10,6 +10,7 @@ import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -26,6 +27,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.JavaFileObject;
@@ -36,6 +38,7 @@ import me.router.compiler.utils.ProcessorLogger;
 import me.router.compiler.utils.RouterCompilerUtils;
 
 import static javax.lang.model.element.Modifier.PUBLIC;
+import static me.router.compiler.utils.Consts.ACTIVITY;
 import static me.router.compiler.utils.Consts.CLASS_ROUTER_REGISTER;
 import static me.router.compiler.utils.Consts.METHOD_REGISTER;
 import static me.router.compiler.utils.Consts.ROUTER_ANNOTATION_COMPONENTROUTER;
@@ -53,27 +56,31 @@ import static me.router.compiler.utils.Consts.SEPARATOR;
 @SupportedAnnotationTypes({ROUTER_ANNOTATION_COMPONENTROUTER})
 public class ComponentRouterProcessor extends AbstractProcessor {
 
+    // Logger
     private ProcessorLogger logger;
-
-    // 被生成类所在 Module 的 Module name
-    private String moduleName = null;
 
     // 将生成的文件写入磁盘
     private Filer filer;
     private Elements elements;
     private Types types;
 
+    // 被生成类所在 Module 的 Module name
+    private String moduleName = null;
+
+    // 存放路由表，在一个 Module 里有 N 个被注解为 ComponentRouter 的类相关信息都会存放在这里
+    private Map<String, RouterMeta> routerMetaMap = new HashMap<>();
+
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
 
+        // Logger
+        logger = new ProcessorLogger(processingEnvironment.getMessager());
+
         filer = processingEnvironment.getFiler();
         elements = processingEnvironment.getElementUtils();
         types = processingEnvironment.getTypeUtils();
-
-        // Log
-        logger = new ProcessorLogger(processingEnvironment.getMessager());
 
         // 获取 build.gradle 配置的 [moduleName]
         Map<String, String> options = processingEnvironment.getOptions();
@@ -101,7 +108,6 @@ public class ComponentRouterProcessor extends AbstractProcessor {
             throw new RuntimeException("Router::Compiler >>> No module name, for more information, look at gradle log.");
         }
 
-
         logger.info(">>> ComponentRouterProcessor init. <<<");
     }
 
@@ -128,11 +134,22 @@ public class ComponentRouterProcessor extends AbstractProcessor {
      * @throws IOException
      */
     private void resolveComponentRouters(Set<? extends Element> elementsAnnotatedWith) throws IOException {
+        routerMetaMap.clear();
+
+        TypeMirror typeActivity = elements.getTypeElement(ACTIVITY).asType();
+
         // 遍历所有被注解了 @ComponentRouter 的元素
         for (Element annotatedElement : elementsAnnotatedWith) {
             // 检查被注解为 @ComponentRouter 的元素是否是类
             if (annotatedElement.getKind() == ElementKind.CLASS) {
+                TypeMirror typeMirror = annotatedElement.asType();
+                ComponentRouter componentRouter = annotatedElement.getAnnotation(ComponentRouter.class);
 
+                if (types.isSubtype(typeMirror, typeActivity)) {// 被注解类是否为 Activity
+                    logger.info(">>> Found activity router: " + typeMirror.toString() + " <<<");
+
+//                    routerMetaMap.put(componentRouter.path(), RouterMeta.build());
+                }
 
             } else {
                 logger.error(String.format(">>> %s annotations can only be used on classes. <<<", ComponentRouter.class.getSimpleName()));
@@ -157,17 +174,16 @@ public class ComponentRouterProcessor extends AbstractProcessor {
                 .addModifiers(PUBLIC)
                 .addParameter(methodRegisterParam);
 
-//        methodRegister.addStatement(
-//                "atlas.put($S, $T.build($T." + routeMeta.getType() + ", $T.class, $S, $S, " + (StringUtils.isEmpty(mapBody) ? null : ("new java.util.HashMap<String, Integer>(){{" + mapBodyBuilder.toString() + "}}")) + ", " + routeMeta.getPriority() + ", " + routeMeta.getExtra() + "))",
-//                routeMeta.getPath(),
-//                routeMetaCn,
-//                routeTypeCn,
-//                className,
-//                routeMeta.getPath().toLowerCase(),
-//                routeMeta.getGroup().toLowerCase());
+        // 根据 routerMetaMap 为 register 方法添加代码
+        for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
+//            methodRegister.addStatement(
+//                    "register.put($S, $T.build($T." + entry.getValue().getType() + ", $T.class, $S, $S, " + (StringUtils.isEmpty(mapBody) ? null : ("new java.util.HashMap<String, Integer>(){{" + mapBodyBuilder.toString() + "}}")) + ", " + routeMeta.getPriority() + ", " + routeMeta.getExtra() + "))",
+//                    entry.getKey(),
+//                    entry.getKey());
+        }
 
         // 生成路由注册表并将文件写入磁盘
-        String classComponentRoutersName = CLASS_ROUTER_REGISTER  + SEPARATOR+ moduleName;
+        String classComponentRoutersName = CLASS_ROUTER_REGISTER + SEPARATOR + moduleName;
         JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
                 TypeSpec.classBuilder(classComponentRoutersName)
                         .addSuperinterface(ClassName.get(elements.getTypeElement(ROUTER_API_ROUTERREGISTER)))

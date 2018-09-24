@@ -1,9 +1,16 @@
 package me.router.annotation.entity;
 
+import me.router.annotation.enums.RouterType;
+
 /**
  *
  */
 public class RouterMeta {
+
+    /**
+     *
+     */
+    private RouterType type;
 
     /**
      *
@@ -14,6 +21,10 @@ public class RouterMeta {
      *
      */
     private Class<?> destination;
+
+    public RouterMeta() {
+
+    }
 
     public RouterMeta(String path, Class<?> destination) {
         this.path = path;
