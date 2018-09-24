@@ -34,6 +34,7 @@ import javax.tools.JavaFileObject;
 
 import me.router.annotation.ComponentRouter;
 import me.router.annotation.entity.RouterMeta;
+import me.router.annotation.enums.RouterType;
 import me.router.compiler.utils.ProcessorLogger;
 import me.router.compiler.utils.RouterCompilerUtils;
 
@@ -148,7 +149,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
                 if (types.isSubtype(typeMirror, typeActivity)) {// 被注解类是否为 Activity
                     logger.info(">>> Found activity router: " + typeMirror.toString() + " <<<");
 
-//                    routerMetaMap.put(componentRouter.path(), RouterMeta.build());
+                    routerMetaMap.put(componentRouter.path(), RouterMeta.build(RouterType.ACTIVITY, annotatedElement, componentRouter.path()));
                 }
 
             } else {
@@ -178,7 +179,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
         for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
 //            methodRegister.addStatement(
 //                    "register.put($S, $T.build($T." + entry.getValue().getType() + ", $T.class, $S, $S, " + (StringUtils.isEmpty(mapBody) ? null : ("new java.util.HashMap<String, Integer>(){{" + mapBodyBuilder.toString() + "}}")) + ", " + routeMeta.getPriority() + ", " + routeMeta.getExtra() + "))",
-//                    entry.getKey(),
+//                    entry.getValue().getPath(),
 //                    entry.getKey());
         }
 
