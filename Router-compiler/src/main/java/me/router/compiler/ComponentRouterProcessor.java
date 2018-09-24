@@ -81,7 +81,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
             moduleName = options.get(ROUTER_MODULE_NAME);
         }
 
-        // 检查 Module 配置，你需要将你所有的 Android Module 配置 annotationProcessorOptions { arguments ... }
+        // 检查 Module 配置，你需要将你所有的 Android Module 的 build.gradle 配置文件 defaultConfig 属性里配置 annotationProcessorOptions { arguments ... }
         if (moduleName != null && moduleName.length() != 0) {
             moduleName = moduleName.replaceAll("[^0-9a-zA-Z_]+", "");
 
@@ -135,35 +135,44 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
 
             } else {
-                logger.info(String.format(">>> %s annotations can only be used on classes. <<<", ComponentRouter.class.getSimpleName()));
+                logger.error(String.format(">>> %s annotations can only be used on classes. <<<", ComponentRouter.class.getSimpleName()));
             }
 
 
         }
 
         // 添加 RouterRegister 接口的 register 方法的方法参数类型
-        ParameterizedTypeName registerMapType = ParameterizedTypeName.get(
+        ParameterizedTypeName methodRegisterParamType = ParameterizedTypeName.get(
                 ClassName.get(Map.class),
                 ClassName.get(String.class),
                 ClassName.get(RouterMeta.class)
         );
 
         // 重写 RouterRegister 接口的 register 方法的方法参数
-        ParameterSpec rootParamSpec = ParameterSpec.builder(registerMapType, "register").build();
+        ParameterSpec methodRegisterParam = ParameterSpec.builder(methodRegisterParamType, "register").build();
 
         // 添加方法，重写 RouterRegister 接口的 register 方法
-        MethodSpec.Builder loadIntoMethodOfRootBuilder = MethodSpec.methodBuilder(METHOD_REGISTER)
+        MethodSpec.Builder methodRegister = MethodSpec.methodBuilder(METHOD_REGISTER)
                 .addAnnotation(Override.class)
                 .addModifiers(PUBLIC)
-                .addParameter(rootParamSpec);
+                .addParameter(methodRegisterParam);
+
+//        methodRegister.addStatement(
+//                "atlas.put($S, $T.build($T." + routeMeta.getType() + ", $T.class, $S, $S, " + (StringUtils.isEmpty(mapBody) ? null : ("new java.util.HashMap<String, Integer>(){{" + mapBodyBuilder.toString() + "}}")) + ", " + routeMeta.getPriority() + ", " + routeMeta.getExtra() + "))",
+//                routeMeta.getPath(),
+//                routeMetaCn,
+//                routeTypeCn,
+//                className,
+//                routeMeta.getPath().toLowerCase(),
+//                routeMeta.getGroup().toLowerCase());
 
         // 生成路由注册表并将文件写入磁盘
-        String componentRoutersName = CLASS_ROUTER_REGISTER  + SEPARATOR+ moduleName;
+        String classComponentRoutersName = CLASS_ROUTER_REGISTER  + SEPARATOR+ moduleName;
         JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
-                TypeSpec.classBuilder(componentRoutersName)
+                TypeSpec.classBuilder(classComponentRoutersName)
                         .addSuperinterface(ClassName.get(elements.getTypeElement(ROUTER_API_ROUTERREGISTER)))
                         .addModifiers(PUBLIC)
-                        .addMethod(loadIntoMethodOfRootBuilder.build())
+                        .addMethod(methodRegister.build())
                         .build()
         ).build().writeTo(filer);
     }

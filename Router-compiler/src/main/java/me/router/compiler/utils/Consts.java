@@ -9,6 +9,8 @@ public final class Consts {
     public static final String PROJECT = "Router";
     public static final String ROUTER_MODULE_NAME = "ROUTER_MODULE_NAME";
 
+    // Log
+    public static final String PREFIX_OF_LOGGER = PROJECT + "::Compiler ";
 
     /*
      * #############################################################################################
@@ -37,7 +39,4 @@ public final class Consts {
     // Router-api
     public static final String ROUTER_API = ".api";
     public static final String ROUTER_API_ROUTERREGISTER = ROOT_PACKAGE + ROUTER_API + ".core.RouterRegister";
-
-    // Log
-    public static final String PREFIX_OF_LOGGER = PROJECT + "::Compiler ";
 }
