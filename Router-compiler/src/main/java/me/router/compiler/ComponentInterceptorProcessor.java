@@ -14,7 +14,7 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 
-import static me.router.compiler.utils.Consts.ANNOTATION_COMPONENT_INTERCEPTOR;
+import static me.router.compiler.utils.Consts.ROUTER_ANNOTATION_COMPONENTINTERCEPTOR;
 import static me.router.compiler.utils.Consts.ROUTER_MODULE_NAME;
 
 /**
@@ -23,7 +23,7 @@ import static me.router.compiler.utils.Consts.ROUTER_MODULE_NAME;
 @AutoService(Processor.class)
 @SupportedOptions({ROUTER_MODULE_NAME})
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
-@SupportedAnnotationTypes({ANNOTATION_COMPONENT_INTERCEPTOR})
+@SupportedAnnotationTypes({ROUTER_ANNOTATION_COMPONENTINTERCEPTOR})
 public class ComponentInterceptorProcessor extends AbstractProcessor {
 
     @Override

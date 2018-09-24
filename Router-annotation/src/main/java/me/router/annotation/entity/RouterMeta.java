@@ -1,4 +1,4 @@
-package me.router.api.core;
+package me.router.annotation.entity;
 
 /**
  *

@@ -3,6 +3,9 @@ package me.router.compiler;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.io.IOException;
@@ -28,14 +31,17 @@ import javax.lang.model.util.Types;
 import javax.tools.JavaFileObject;
 
 import me.router.annotation.ComponentRouter;
+import me.router.annotation.entity.RouterMeta;
 import me.router.compiler.utils.ProcessorLogger;
 import me.router.compiler.utils.RouterCompilerUtils;
 
 import static javax.lang.model.element.Modifier.PUBLIC;
-import static me.router.compiler.utils.Consts.ANNOTATION_COMPONENT_ROUTER;
+import static me.router.compiler.utils.Consts.CLASS_ROUTER_REGISTER;
+import static me.router.compiler.utils.Consts.METHOD_REGISTER;
+import static me.router.compiler.utils.Consts.ROUTER_ANNOTATION_COMPONENTROUTER;
+import static me.router.compiler.utils.Consts.ROUTER_API_ROUTERREGISTER;
 import static me.router.compiler.utils.Consts.ROUTER_MODULE_NAME;
 import static me.router.compiler.utils.Consts.PACKAGE_OF_GENERATE_FILE;
-import static me.router.compiler.utils.Consts.PROJECT;
 import static me.router.compiler.utils.Consts.SEPARATOR;
 
 /**
@@ -44,7 +50,7 @@ import static me.router.compiler.utils.Consts.SEPARATOR;
 @AutoService(Processor.class)
 @SupportedOptions({ROUTER_MODULE_NAME})
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
-@SupportedAnnotationTypes({ANNOTATION_COMPONENT_ROUTER})
+@SupportedAnnotationTypes({ROUTER_ANNOTATION_COMPONENTROUTER})
 public class ComponentRouterProcessor extends AbstractProcessor {
 
     private ProcessorLogger logger;
@@ -54,8 +60,8 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
     // 将生成的文件写入磁盘
     private Filer filer;
-    private Elements element;
-    private Types type;
+    private Elements elements;
+    private Types types;
 
 
     @Override
@@ -63,8 +69,8 @@ public class ComponentRouterProcessor extends AbstractProcessor {
         super.init(processingEnvironment);
 
         filer = processingEnvironment.getFiler();
-        element = processingEnvironment.getElementUtils();
-        type = processingEnvironment.getTypeUtils();
+        elements = processingEnvironment.getElementUtils();
+        types = processingEnvironment.getTypeUtils();
 
         // Log
         logger = new ProcessorLogger(processingEnvironment.getMessager());
@@ -81,7 +87,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
             logger.info("The user has configuration the module name, it was [" + moduleName + "]");
         } else {
-            logger.info("These no module name, at 'build.gradle', like :\n" +
+            logger.error("These no module name, at 'build.gradle', like :\n" +
                     "android {\n" +
                     "    defaultConfig {\n" +
                     "        ...\n" +
@@ -103,11 +109,11 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
         if (annotations != null && annotations.size() != 0) {
             logger.info(RouterCompilerUtils.format(">>> Found %s, start... <<<", ComponentRouter.class.getSimpleName()));
-            Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ComponentRouter.class);
+            Set<? extends Element> elementsAnnotatedWith = roundEnvironment.getElementsAnnotatedWith(ComponentRouter.class);
             try {
-                if (elements != null && elements.size() != 0) {
-                    logger.info(RouterCompilerUtils.format(">>> Resolve %s, size is %d <<<", ComponentRouter.class.getSimpleName(), elements.size()));
-                    this.resolveComponentRouters(elements);
+                if (elementsAnnotatedWith != null && elementsAnnotatedWith.size() != 0) {
+                    logger.info(RouterCompilerUtils.format(">>> Resolve %s, size is %d <<<", ComponentRouter.class.getSimpleName(), elementsAnnotatedWith.size()));
+                    this.resolveComponentRouters(elementsAnnotatedWith);
                 }
             } catch (Exception e) {
                 logger.error(e);
@@ -118,12 +124,12 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     }
 
     /**
-     * @param elements
+     * @param elementsAnnotatedWith
      * @throws IOException
      */
-    private void resolveComponentRouters(Set<? extends Element> elements) throws IOException {
+    private void resolveComponentRouters(Set<? extends Element> elementsAnnotatedWith) throws IOException {
         // 遍历所有被注解了 @ComponentRouter 的元素
-        for (Element annotatedElement : elements) {
+        for (Element annotatedElement : elementsAnnotatedWith) {
             // 检查被注解为 @ComponentRouter 的元素是否是类
             if (annotatedElement.getKind() == ElementKind.CLASS) {
 
@@ -135,14 +141,29 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
         }
 
-        // Write root meta into disk.
-        String componentRoutersName = PROJECT + SEPARATOR + moduleName;
+        // 添加 RouterRegister 接口的 register 方法的方法参数类型
+        ParameterizedTypeName registerMapType = ParameterizedTypeName.get(
+                ClassName.get(Map.class),
+                ClassName.get(String.class),
+                ClassName.get(RouterMeta.class)
+        );
+
+        // 重写 RouterRegister 接口的 register 方法的方法参数
+        ParameterSpec rootParamSpec = ParameterSpec.builder(registerMapType, "register").build();
+
+        // 添加方法，重写 RouterRegister 接口的 register 方法
+        MethodSpec.Builder loadIntoMethodOfRootBuilder = MethodSpec.methodBuilder(METHOD_REGISTER)
+                .addAnnotation(Override.class)
+                .addModifiers(PUBLIC)
+                .addParameter(rootParamSpec);
+
+        // 生成路由注册表并将文件写入磁盘
+        String componentRoutersName = CLASS_ROUTER_REGISTER  + SEPARATOR+ moduleName;
         JavaFile.builder(PACKAGE_OF_GENERATE_FILE,
                 TypeSpec.classBuilder(componentRoutersName)
-//                        .addJavadoc(WARNING_TIPS)
-//                        .addSuperinterface(ClassName.get(elements.getTypeElement(ITROUTE_ROOT)))
+                        .addSuperinterface(ClassName.get(elements.getTypeElement(ROUTER_API_ROUTERREGISTER)))
                         .addModifiers(PUBLIC)
-//                        .addMethod(loadIntoMethodOfRootBuilder.build())
+                        .addMethod(loadIntoMethodOfRootBuilder.build())
                         .build()
         ).build().writeTo(filer);
     }

@@ -2,6 +2,8 @@ package me.router.api.core;
 
 import java.util.Map;
 
+import me.router.annotation.entity.RouterMeta;
+
 /**
  * 路由表注册
  */

@@ -5,7 +5,7 @@ import android.app.Application;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.router.api.core.RouterMeta;
+import me.router.annotation.entity.RouterMeta;
 
 /**
  *
