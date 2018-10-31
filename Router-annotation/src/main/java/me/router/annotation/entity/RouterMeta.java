@@ -40,10 +40,24 @@ public class RouterMeta {
         this.destination = destination;
     }
 
+    /**
+     * 此方法在路由表初始化的时候调用
+     *
+     * @param type
+     * @param path
+     * @param destination
+     * @return
+     */
     public static RouterMeta build(RouterType type, String path, Class<?> destination) {
         return new RouterMeta(type, null, path, destination);
     }
 
+    /**
+     * @param type
+     * @param element
+     * @param path
+     * @return
+     */
     public static RouterMeta build(RouterType type, Element element, String path) {
         return new RouterMeta(type, element, path, null);
     }

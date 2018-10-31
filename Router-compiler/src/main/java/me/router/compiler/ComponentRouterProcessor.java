@@ -150,6 +150,8 @@ public class ComponentRouterProcessor extends AbstractProcessor {
                     logger.info(">>> Found activity router: " + typeMirror.toString() + " <<<");
 
                     routerMetaMap.put(componentRouter.path(), RouterMeta.build(RouterType.ACTIVITY, annotatedElement, componentRouter.path()));
+                } else {
+                    // 这里以后增加其他类型的支持
                 }
 
             } else {
@@ -177,10 +179,14 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
         // 根据 routerMetaMap 为 register 方法添加代码
         for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
-//            methodRegister.addStatement(
-//                    "register.put($S, $T.build($T." + entry.getValue().getType() + ", $T.class, $S, $S, " + (StringUtils.isEmpty(mapBody) ? null : ("new java.util.HashMap<String, Integer>(){{" + mapBodyBuilder.toString() + "}}")) + ", " + routeMeta.getPriority() + ", " + routeMeta.getExtra() + "))",
-//                    entry.getValue().getPath(),
-//                    entry.getKey());
+            RouterMeta value = entry.getValue();
+            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S, $T.class))",
+                    entry.getKey(),
+                    ClassName.get(RouterMeta.class),
+                    ClassName.get(RouterType.class),
+                    entry.getKey(),// 路径路径
+                    ClassName.get((TypeElement) value.getElement())
+            );
         }
 
         // 生成路由注册表并将文件写入磁盘
