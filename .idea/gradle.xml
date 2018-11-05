@@ -11,11 +11,11 @@
             <option value="$PROJECT_DIR$/App" />
             <option value="$PROJECT_DIR$/ComponentSDK" />
             <option value="$PROJECT_DIR$/ComponentUI" />
-            <option value="$PROJECT_DIR$/Module-Login" />
-            <option value="$PROJECT_DIR$/Module-User" />
-            <option value="$PROJECT_DIR$/Router-annotation" />
-            <option value="$PROJECT_DIR$/Router-api" />
-            <option value="$PROJECT_DIR$/Router-compiler" />
+            <option value="$PROJECT_DIR$/Module_Login" />
+            <option value="$PROJECT_DIR$/Module_User" />
+            <option value="$PROJECT_DIR$/Router_annotation" />
+            <option value="$PROJECT_DIR$/Router_api" />
+            <option value="$PROJECT_DIR$/Router_compiler" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

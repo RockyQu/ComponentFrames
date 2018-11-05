@@ -47,6 +47,6 @@ android {
 }
 
 dependencies {
-    api project(':Router-annotation')
-    annotationProcessor project(":Router-compiler")
+    api project(':Router_annotation')
+    annotationProcessor project(':Router_compiler')
 }

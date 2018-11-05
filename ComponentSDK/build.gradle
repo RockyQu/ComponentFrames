@@ -53,5 +53,5 @@ dependencies {
     api project(":ComponentUI")
 
     // 引入路由
-    api project(":Router-api")
+    api project(':Router_api')
 }

@@ -87,7 +87,7 @@ android {
 dependencies {
     if (isBuildModule.toBoolean()) {
 
-        annotationProcessor project(":Router-compiler")
+        annotationProcessor project(":Router_compiler")
 
         // Test
         testImplementation rootProject.ext.dependencies["junit"]
@@ -96,7 +96,7 @@ dependencies {
         testImplementation rootProject.ext.dependencies["canary-release"]
     } else {
 
-        compileOnly project(":Router-compiler")
+        compileOnly project(":Router_compiler")
 
         // Test
         compileOnly rootProject.ext.dependencies["junit"]

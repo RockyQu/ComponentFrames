@@ -74,12 +74,12 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     if (!isBuildModule.toBoolean()) {
-        runtimeOnly project(":Module-Login")
-        runtimeOnly project(":Module-User")
+        runtimeOnly project(":Module_Login")
+        runtimeOnly project(":Module_User")
     }
 
     implementation project(":ComponentSDK")
 
     // 引入路由注解生成库
-    annotationProcessor project(":Router-compiler")
+    annotationProcessor project(':Router_compiler')
 }
