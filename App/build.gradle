@@ -53,7 +53,7 @@ android {
     // 多渠道打包
     productFlavors {
         // 默认渠道
-        Frames {
+        DefaultChannel {
             manifestPlaceholders = [Channel: "ComponentFrames"]
 
             dimension "ComponentFrames"
