@@ -78,7 +78,8 @@ dependencies {
         runtimeOnly project(":Module_User")
     }
 
-    implementation project(":ComponentSDK")
+    // 注意 ComponentUI 已经依赖 ComponentSDK, 如果业务模块需要公共 UI 组件就依赖 ComponentUI, 如果不需要就只依赖 ComponentSDK 即可
+    api project(':ComponentUI')
 
     // 引入路由注解生成库
     annotationProcessor project(':Router_compiler')

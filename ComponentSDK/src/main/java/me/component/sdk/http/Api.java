@@ -5,7 +5,7 @@ package me.component.sdk.http;
  */
 public interface Api {
 
-    String APP_DOMAIN = "https://api.shaimobao.com/";
+    String APP_DOMAIN = "https://api.github.com/";
 
     int SUCCESS = 0;
 }

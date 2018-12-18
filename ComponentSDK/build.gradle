@@ -49,8 +49,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    // 引入 ComponentUI
-    api project(":ComponentUI")
+    // 引入基础模块 Github → https://github.com/RockyQu/MVPFrames
+    api 'me.frame:MVPFrames:2.3.2'
 
     // 引入路由
     api project(':Router_api')

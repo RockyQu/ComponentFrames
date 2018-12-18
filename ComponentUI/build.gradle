@@ -39,6 +39,6 @@ android {
 }
 
 dependencies {
-    // 引入基础模块 Github → https://github.com/RockyQu/MVPFrames
-    api 'me.frame:MVPFrames:2.3.1'
+    // 引入 ComponentSDK，注意 ComponentUI 已经依赖 ComponentSDK, 如果业务模块需要公共 UI 组件就依赖 ComponentUI, 如果不需要就只依赖 ComponentSDK 即可
+    api project(":ComponentSDK")
 }

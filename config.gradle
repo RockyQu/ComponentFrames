@@ -4,8 +4,8 @@ ext {
             applicationId: "me.component.frame"
     ]
 
-    android = [compileSdkVersion             : 27,
-               buildToolsVersion             : "27.0.3",
+    android = [compileSdkVersion             : 28,
+               buildToolsVersion             : "28.0.3",
                minSdkVersion                 : 15,
                targetSdkVersion              : 26,
                versionCode                   : 51,
@@ -15,7 +15,7 @@ ext {
     ]
 
     version = [
-            androidSupportVersion: "27.1.1",
+            androidSupportVersion: "28.0.0",
             retrofitVersion      : "2.3.0",
             dagger2Version       : "2.17",
             glideVersion         : "4.8.0",
@@ -112,10 +112,8 @@ ext {
             // Views
             "flexbox"                      : "com.google.android:flexbox:0.3.1",// 流式布局
             "BaseRecyclerViewAdapterHelper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18",// Recyclerview
-            "calendarview"                 : "com.haibin:calendarview:3.4.4",    // 日历View
 
             // Other
-            "filedownloader"               : "com.liulishuo.filedownloader:library:1.6.4",
-            "springview"                   : "com.liaoinstan.springview:library:1.2.6"// 刷新控件
+            "filedownloader"               : "com.liulishuo.filedownloader:library:1.6.4"
     ]
 }
