@@ -139,6 +139,8 @@ public class ComponentRouterProcessor extends AbstractProcessor {
 
         TypeMirror typeActivity = elements.getTypeElement(ACTIVITY).asType();
 
+        ClassName routerType = ClassName.get(RouterType.class);
+
         // 遍历所有被注解了 @ComponentRouter 的元素
         for (Element annotatedElement : elementsAnnotatedWith) {
             // 检查被注解为 @ComponentRouter 的元素是否是类
@@ -180,6 +182,13 @@ public class ComponentRouterProcessor extends AbstractProcessor {
         // 根据 routerMetaMap 为 register 方法添加代码
         for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
             RouterMeta value = entry.getValue();
+            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S))",
+                    entry.getKey(),
+                    ClassName.get(RouterMeta.class),
+                    routerType,
+                    entry.getKey()// 路由路径
+            );
+
 //            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S, $T.class))",
 //                    entry.getKey(),
 //                    ClassName.get(RouterMeta.class),
