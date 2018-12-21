@@ -182,20 +182,17 @@ public class ComponentRouterProcessor extends AbstractProcessor {
         // 根据 routerMetaMap 为 register 方法添加代码
         for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
             RouterMeta value = entry.getValue();
-            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S))",
+
+            ClassName className = ClassName.get((TypeElement) value.getElement());
+
+            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S" + ", $T.class" + ", 0" + "))",
                     entry.getKey(),
                     ClassName.get(RouterMeta.class),
                     routerType,
-                    entry.getKey()// 路由路径
+                    entry.getKey(),
+                    className
             );
 
-//            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S, $T.class))",
-//                    entry.getKey(),
-//                    ClassName.get(RouterMeta.class),
-//                    ClassName.get(RouterType.class),
-//                    entry.getKey(),// 路径路径
-//                    ClassName.get((TypeElement) value.getElement())
-//            );
         }
 
         // 生成路由注册表并将文件写入磁盘

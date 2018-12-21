@@ -49,13 +49,13 @@ public class RouterMeta {
      * @param destination
      * @return
      */
-    public static RouterMeta build(RouterType type, String path, Class<?> destination) {
+    public static RouterMeta build(RouterType type, String path, Class<?> destination, int a) {
         return new RouterMeta(type, null, path, destination);
     }
 
-    public static RouterMeta build(RouterType type, String path) {
-        return new RouterMeta(type, null, path, null);
-    }
+//    public static RouterMeta build(RouterType type, Class<?> destination) {
+//        return new RouterMeta(type, null, null, destination);
+//    }
 
     /**
      * @param type
