@@ -6,14 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- *
+ * 标记目标类的路由信息
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS)
 public @interface ComponentRouter {
 
     /**
-     * Path of route
+     * 路由唯一路径
      */
-    String path() default "";
+    String path();
 }

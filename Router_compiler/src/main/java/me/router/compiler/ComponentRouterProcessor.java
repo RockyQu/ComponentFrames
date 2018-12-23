@@ -49,7 +49,7 @@ import static me.router.compiler.utils.Consts.PACKAGE_OF_GENERATE_FILE;
 import static me.router.compiler.utils.Consts.SEPARATOR;
 
 /**
- *
+ * 用于查找路由注解 {@link ComponentRouter} 的处理器
  */
 @AutoService(Processor.class)
 @SupportedOptions({ROUTER_MODULE_NAME})
@@ -120,7 +120,7 @@ public class ComponentRouterProcessor extends AbstractProcessor {
             try {
                 if (elementsAnnotatedWith != null && elementsAnnotatedWith.size() != 0) {
                     logger.info(RouterCompilerUtils.format(">>> Resolve %s, size is %d <<<", ComponentRouter.class.getSimpleName(), elementsAnnotatedWith.size()));
-                    this.resolveComponentRouters(elementsAnnotatedWith);
+                    this.parseComponentRouters(elementsAnnotatedWith);
                 }
             } catch (Exception e) {
                 logger.error(e);
@@ -131,10 +131,12 @@ public class ComponentRouterProcessor extends AbstractProcessor {
     }
 
     /**
+     * 开始解析路由注解目标，并生成路由表
+     *
      * @param elementsAnnotatedWith
      * @throws IOException
      */
-    private void resolveComponentRouters(Set<? extends Element> elementsAnnotatedWith) throws IOException {
+    private void parseComponentRouters(Set<? extends Element> elementsAnnotatedWith) throws IOException {
         routerMetaMap.clear();
 
         TypeMirror typeActivity = elements.getTypeElement(ACTIVITY).asType();
@@ -179,13 +181,13 @@ public class ComponentRouterProcessor extends AbstractProcessor {
                 .addModifiers(PUBLIC)
                 .addParameter(methodRegisterParam);
 
-        // 根据 routerMetaMap 为 register 方法添加代码
+        // 根据 routerMetaMap 为 register 方法添加代码，生成路由表
         for (Map.Entry<String, RouterMeta> entry : routerMetaMap.entrySet()) {
             RouterMeta value = entry.getValue();
 
             ClassName className = ClassName.get((TypeElement) value.getElement());
 
-            methodRegister.addStatement("register.put($S, $T.build($T." + value.getType() + ", $S" + ", $T.class" + ", 0" + "))",
+            methodRegister.addStatement("register.put($S, $T.build(" + value.getId() + ", $T." + value.getType() + ", $S" + ", $T.class" + "))",
                     entry.getKey(),
                     ClassName.get(RouterMeta.class),
                     routerType,

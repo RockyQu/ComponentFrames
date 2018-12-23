@@ -5,27 +5,22 @@ import javax.lang.model.element.Element;
 import me.router.annotation.enums.RouterType;
 
 /**
- *
+ * 路由的基本信息
  */
 public class RouterMeta {
 
-    /**
-     *
-     */
-    private RouterType type;
+    private int id;
 
-    /**
-     *
-     */
+    private RouterType type;
     private Element element;
 
     /**
-     *
+     * 路由唯一路径，命名规则建议 /app/MainActivity 便于理解
      */
     private String path;
 
     /**
-     *
+     * 路由目标
      */
     private Class<?> destination;
 
@@ -33,13 +28,13 @@ public class RouterMeta {
 
     }
 
-    public RouterMeta(RouterType type, Element element, String path, Class<?> destination) {
+    public RouterMeta(int id, RouterType type, Element element, String path, Class<?> destination) {
+        this.id = id;
         this.type = type;
         this.element = element;
         this.path = path;
         this.destination = destination;
     }
-
 
     /**
      * 路由表初始化调用此方法
@@ -49,22 +44,20 @@ public class RouterMeta {
      * @param destination
      * @return
      */
-    public static RouterMeta build(RouterType type, String path, Class<?> destination, int a) {
-        return new RouterMeta(type, null, path, destination);
+    public static RouterMeta build(int id, RouterType type, String path, Class<?> destination) {
+        return new RouterMeta(id, type, null, path, destination);
     }
 
-//    public static RouterMeta build(RouterType type, Class<?> destination) {
-//        return new RouterMeta(type, null, null, destination);
-//    }
-
-    /**
-     * @param type
-     * @param element
-     * @param path
-     * @return
-     */
     public static RouterMeta build(RouterType type, Element element, String path) {
-        return new RouterMeta(type, element, path, null);
+        return new RouterMeta(path.hashCode(), type, element, path, null);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public RouterType getType() {

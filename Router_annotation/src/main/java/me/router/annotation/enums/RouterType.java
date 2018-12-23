@@ -1,12 +1,12 @@
 package me.router.annotation.enums;
 
 /**
- *
+ * 路由类型，目前只支持 Activity，后续继续支持其他类型，如 Service、ContentProvider 等
  */
 public enum RouterType {
 
     ACTIVITY(0, "android.app.Activity"),
-    UNKNOWN(-1, "Unknown route type");
+    UNKNOWN(-1, "Unknown router type");
 
     int id;
     String className;
