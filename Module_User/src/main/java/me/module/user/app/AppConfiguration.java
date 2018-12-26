@@ -2,14 +2,11 @@ package me.module.user.app;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
-
-import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
 
-import me.mvp.frame.base.App;
 import me.mvp.frame.base.delegate.ApplicationLifecycles;
 import me.mvp.frame.di.module.AppConfigModule;
 import me.mvp.frame.integration.ConfigModule;
@@ -28,7 +25,22 @@ public class AppConfiguration implements ConfigModule {
 
     @Override
     public void injectApplicationLifecycle(Context context, List<ApplicationLifecycles> lifecycleManager) {
+        lifecycleManager.add(new ApplicationLifecycles() {
+            @Override
+            public void attachBaseContext(@NonNull Context base) {
 
+            }
+
+            @Override
+            public void onCreate(@NonNull Application application) {
+
+            }
+
+            @Override
+            public void onTerminate(@NonNull Application application) {
+
+            }
+        });
     }
 
     @Override
@@ -38,11 +50,6 @@ public class AppConfiguration implements ConfigModule {
 
     @Override
     public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
-        lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
-            @Override
-            public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-                ((RefWatcher) ((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
-            }
-        });
+
     }
 }

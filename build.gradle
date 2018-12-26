@@ -5,12 +5,18 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
 
+        // 如果 ButterKnife 插件和其他插件发生冲突而报错请试试 v8.4.0 版本的 ButterKnife 插件
+        // 注意 v8.4.0 最高只能支持 com.android.tools.build:gradle:3.0.1
+        // classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
+
         // 以下这段功能是用来上传至代码库，其他项目不用复制这段代码
         classpath 'com.novoda:bintray-release:0.8.1'
     }
 
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
         mavenCentral()
         jcenter()
         google()
@@ -19,7 +25,7 @@ buildscript {
 
 allprojects {
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
         jcenter()
         google()

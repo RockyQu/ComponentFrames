@@ -13,9 +13,6 @@
             <option value="$PROJECT_DIR$/ComponentUI" />
             <option value="$PROJECT_DIR$/Module_Login" />
             <option value="$PROJECT_DIR$/Module_User" />
-            <option value="$PROJECT_DIR$/Router_annotation" />
-            <option value="$PROJECT_DIR$/Router_api" />
-            <option value="$PROJECT_DIR$/Router_compiler" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

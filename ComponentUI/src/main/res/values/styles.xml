@@ -1,14 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="public_AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/public_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/public_colorPrimaryDark</item>
-        <item name="colorAccent">@color/public_colorAccent</item>
-        <item name="android:windowAnimationStyle">@style/public_anim_activity</item>
-        <item name="android:windowBackground">@color/public_activity_bg</item>
-    </style>
+    <style name="public_AppTheme" parent="@style/Base.Theme.AppCompat" />
 
     <style name="public_NoActionBar" parent="public_AppTheme">
         <item name="windowActionBar">false</item>

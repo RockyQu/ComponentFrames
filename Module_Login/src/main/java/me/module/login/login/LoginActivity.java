@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -15,25 +16,25 @@ import io.reactivex.functions.Consumer;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
 import me.module.login.R;
+import me.module.login.R2;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;
 import me.mvp.frame.utils.StringUtils;
 import me.mvp.frame.widget.Toaster;
-import me.router.annotation.ComponentRouter;
 
 /**
  * 登录页面
  */
-@ComponentRouter(path = RouterHub.LOGIN_LOGINACTIVITY)
+@Route(path = RouterHub.LOGIN_LOGINACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter> implements IView {
 
-    @BindView(R.id.edt_account)
+    @BindView(R2.id.edt_account)
     AppCompatEditText edtAccount;
-    @BindView(R.id.edt_password)
+    @BindView(R2.id.edt_password)
     AppCompatEditText edtPassword;
 
-    @BindView(R.id.btn_submit)
+    @BindView(R2.id.btn_submit)
     AppCompatButton btnSubmit;
 
     // 当前登录用户信息

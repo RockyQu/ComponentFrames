@@ -2,6 +2,7 @@ package me.component.frame.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import java.util.List;
@@ -24,7 +25,23 @@ public class AppConfiguration implements ConfigModule {
 
     @Override
     public void injectApplicationLifecycle(Context context, List<ApplicationLifecycles> lifecycleManager) {
+        lifecycleManager.add(new ApplicationLifecycles() {
 
+            @Override
+            public void attachBaseContext(@NonNull Context base) {
+
+            }
+
+            @Override
+            public void onCreate(@NonNull Application application) {
+
+            }
+
+            @Override
+            public void onTerminate(@NonNull Application application) {
+
+            }
+        });
     }
 
     @Override
