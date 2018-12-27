@@ -2,7 +2,10 @@ package me.component.sdk.core;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.List;
 
@@ -49,7 +52,27 @@ public class AppConfiguration implements ConfigModule {
 
     @Override
     public void injectApplicationLifecycle(Context context, List<ApplicationLifecycles> lifecycleManager) {
+        lifecycleManager.add(new ApplicationLifecycles() {
 
+            @Override
+            public void attachBaseContext(@NonNull Context base) {
+
+            }
+
+            @Override
+            public void onCreate(@NonNull Application application) {
+                if (BuildConfig.DEBUG_FLAG) {
+                    ARouter.openLog();
+                    ARouter.openDebug();
+                }
+                ARouter.init(application);
+            }
+
+            @Override
+            public void onTerminate(@NonNull Application application) {
+
+            }
+        });
     }
 
     @Override
