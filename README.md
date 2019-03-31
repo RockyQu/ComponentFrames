@@ -24,10 +24,11 @@ This is a lightweight Android log component.
 [UpdateLog](https://github.com/RockyQu/Logg/releases)   
 
 ## Feedback
-* Project  [Submit Bug or Idea](https://github.com/RockyQu/Logg/issues)   
+* Project  [Submit Bug or Idea](https://github.com/RockyQu/ComponentFrames/issues)   
 
 ## Thanks
-[LogUtils](https://github.com/pengwei1024/LogUtils)  
+[ARouter](https://github.com/alibaba/ARouter)  
+[ArmsComponent](https://github.com/JessYanCoding/ArmsComponent)  
 
 ## About Me
 * Email [250533855@qq.com](250533855@qq.com)  
