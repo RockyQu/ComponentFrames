@@ -1,8 +1,8 @@
 package me.component.sdk.core.config;
 
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import androidx.room.RoomDatabase;
 import me.component.sdk.core.AppConfiguration;
 import me.component.sdk.db.AppDatabase;
 import me.mvp.frame.db.DatabaseConfig;

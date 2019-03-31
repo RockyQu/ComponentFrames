@@ -1,13 +1,13 @@
 package me.component.frame.mvp.main;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import androidx.annotation.NonNull;
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
 import me.mvp.frame.base.BaseActivity;

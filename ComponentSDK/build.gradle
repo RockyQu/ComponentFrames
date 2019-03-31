@@ -10,8 +10,17 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
-        // Enabling MultiDex support.
-        multiDexEnabled true
+        // 指定room.schemaLocation 生成的文件路径
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -40,12 +49,15 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
     // 引入基础模块 Github → https://github.com/RockyQu/MVPFrames
-    api 'me.frame:MVPFrames:2.3.2'
+    api 'me.frame:MVPFrames:3.0.0'
 
     // 引入路由框架
     api(rootProject.ext.dependencies["arouter"]) {
-        exclude module: 'support-v4'
-        exclude module: 'support-annotations'
+        exclude module: 'legacy-support-v4'
+        exclude module: 'annotation'
     }
     api rootProject.ext.dependencies["multidex"]
+
+    // DB
+    annotationProcessor rootProject.ext.dependencies["room-compiler"]
 }

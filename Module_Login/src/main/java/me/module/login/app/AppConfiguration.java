@@ -2,14 +2,14 @@ package me.module.login.app;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 
 import com.squareup.leakcanary.RefWatcher;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import me.component.sdk.entity.User;
 import me.module.login.login.LoginActivity;
 import me.mvp.frame.base.App;

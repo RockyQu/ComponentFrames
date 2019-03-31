@@ -1,10 +1,10 @@
 package me.component.sdk.entity;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
 import com.google.gson.annotations.SerializedName;
+
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * 用户信息
@@ -12,12 +12,11 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "User")
 public class User {
 
-    // 关键
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     // ID
-    @SerializedName("userid")
+    @SerializedName("userId")
     private String userId;
 
     // 名字

@@ -1,10 +1,10 @@
 package me.module.user.user;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import androidx.annotation.NonNull;
 import me.component.sdk.core.RouterHub;
 import me.module.user.R;
 import me.mvp.frame.base.BaseActivity;

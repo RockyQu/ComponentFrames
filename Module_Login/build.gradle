@@ -7,5 +7,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    api project(":ComponentUI")
+    // 引入 ComponentSDK
+    api project(':ComponentSDK')
 }

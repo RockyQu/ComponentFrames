@@ -2,13 +2,13 @@ package me.component.sdk.core;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import me.component.sdk.BuildConfig;
 import me.component.sdk.core.config.DBConfig;
 import me.component.sdk.core.config.GlobalErrorConfig;

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 android {
-
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
 
@@ -19,12 +18,17 @@ android {
             }
         }
 
-        // Enabling MultiDex support.
-        multiDexEnabled true
-
         ndk {
             abiFilters 'arm64-v8a', 'armeabi', 'armeabi-v7a', 'x86', 'x86_64'
         }
+
+        // Enabling MultiDex support.
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
     lintOptions {
@@ -36,10 +40,12 @@ android {
         checkReleaseBuilds false
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            v2SigningEnabled false
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            v2SigningEnabled true
         }
     }
 
@@ -61,6 +67,51 @@ android {
         }
     }
 
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "DEBUG_FLAG", "true"
+
+            minifyEnabled false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexKeepProguard file('multidex-config.pro')
+        }
+        release {
+            buildConfigField "boolean", "DEBUG_FLAG", "false"
+
+            // 是否支持ZIP
+            zipAlignEnabled true
+            // 是否支持调试
+            debuggable false
+            // 是否支持jni调试
+            jniDebuggable false
+            // 是否进行混淆
+            minifyEnabled false
+            // 移除无用资源 如发生Resources$NotFoundException: Resource ID #0x4 错误可关闭此功能
+            shrinkResources false
+            // 混淆文件位置，其中proguard-android.txt为默认的混淆配置，proguard-rules.pro为模块额外的混淆配置
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 手动分包操作，详细 http://rockycoder.cn/multidex/2018/05/16/Android-NoClassDefFoundError.html
+            multiDexKeepProguard file('multidex-config.pro')
+            // 签名
+            signingConfig signingConfigs.release
+
+            // 批量打包
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def time = new Date().format("yyyy-MM-dd-HH-mm", TimeZone.getDefault())
+                    if (variant.name.endsWith("Debug")) {
+                        // Debug
+                        outputFileName = "App_${variant.productFlavors[0].name}_v${defaultConfig.versionName}_${time}_debug.apk"
+                    } else {
+                        // Release
+                        outputFileName = "App_${variant.productFlavors[0].name}_v${defaultConfig.versionName}_${time}_release.apk"
+                    }
+                }
+            }
+        }
+    }
+
     allprojects {
         repositories {
             jcenter()
@@ -74,14 +125,17 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Tools
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
+        exclude module: 'annotation'
+    }
+
     if (!isBuildModule.toBoolean()) {
         runtimeOnly project(":Module_Login")
         runtimeOnly project(":Module_User")
     }
 
-    // 注意 ComponentUI 已经依赖 ComponentSDK, 如果业务模块需要公共 UI 组件就依赖 ComponentUI, 如果不需要就只依赖 ComponentSDK 即可
-    api project(':ComponentUI')
-
-    // 引入路由注解生成库
-    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    // 引入 ComponentSDK
+    api project(':ComponentSDK')
 }
