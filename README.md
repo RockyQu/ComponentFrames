@@ -2,6 +2,7 @@
 这是一个典型的基于 [ARouter](https://github.com/alibaba/ARouter) 的 Android 组件化快速开发框架
 
 ![ArchitectureImage](https://github.com/RockyQu/ComponentFrames/blob/master/ImageFolder/ArchitectureImage.jpg "ArchitectureImage")
+<div style="text-align: right"> your-text-here </div>
 
 ## History
 [UpdateLog](https://github.com/RockyQu/Logg/releases)   
