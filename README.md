@@ -2,7 +2,6 @@
 这是一个典型的基于 [ARouter](https://github.com/alibaba/ARouter) 的 Android 组件化快速开发框架
 
 ![ArchitectureImage](https://github.com/RockyQu/ComponentFrames/blob/master/ImageFolder/ArchitectureImage.jpg "ArchitectureImage")
-<p align="right">架构图制作 www.draw.io</p>
 
 ## Document
 更多细节讲解 → [Wiki](https://github.com/RockyQu/ComponentFrames/wiki)  
