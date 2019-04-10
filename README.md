@@ -3,6 +3,9 @@
 
 ![ArchitectureImage](https://github.com/RockyQu/ComponentFrames/blob/master/ImageFolder/ArchitectureImage.jpg "ArchitectureImage")
 
+## Document
+更多细节讲解 → [Wiki](https://github.com/RockyQu/ComponentFrames/wiki)  
+
 ## History
 [UpdateLog](https://github.com/RockyQu/Logg/releases)   
 
