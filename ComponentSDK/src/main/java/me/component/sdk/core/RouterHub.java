@@ -20,10 +20,16 @@ public interface RouterHub {
     /**
      * 登录分组
      */
-    String LOGIN_LOGINACTIVITY = LOGIN + "/LoginActivity";
+    interface Login {
+        // 用户登录页面
+        String LOGIN_LOGINACTIVITY = LOGIN + "/LoginActivity";
+    }
 
     /**
      * 用户分组
      */
-    String USER_USERACTIVITY = USER + "/UserActivity";
+    interface User {
+        // 用户信息页面
+        String USER_USERACTIVITY = USER + "/UserActivity";
+    }
 }

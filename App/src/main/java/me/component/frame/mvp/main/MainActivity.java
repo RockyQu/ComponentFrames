@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.log:
+            case R.id.navigationWithParams:// 应用内跳转并传值
 
                 break;
             default:
