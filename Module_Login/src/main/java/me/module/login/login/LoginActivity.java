@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jakewharton.rxbinding3.view.RxView;
@@ -34,12 +35,33 @@ import me.mvp.frame.widget.Toaster;
 @Route(path = RouterHub.Login.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter> implements IView {
 
+    @BindView(R2.id.title)
+    AppCompatTextView title;
     @BindView(R2.id.message)
     AppCompatTextView message;
 
+    // 用户 Id
+    @Autowired(name = "userId", required = true)
+    String id;
+    // 名字
+    @Autowired
+    String name;
+
+    @Autowired
+    User user;
+
     @Override
     public void create(Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
 
+        String params = String.format(
+                "id = %s, name = %s\nuser = %s",
+                id,
+                name,
+                component.getGson().toJson(user)
+        );
+
+        message.setText(params);
     }
 
     @OnClick({R2.id.message})

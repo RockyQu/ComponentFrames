@@ -62,6 +62,35 @@
             android:name=".mvp.web.WebActivity"
             android:label="Web Url"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.scheme.SchemeActivity"
+            android:label="Scheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="arouter" />
+            </intent-filter>
+
+            <!-- App Links -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="http" />
+                <data
+                    android:host="m.aliyun.com"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
 
         <!-- 渠道配置 -->
         <meta-data

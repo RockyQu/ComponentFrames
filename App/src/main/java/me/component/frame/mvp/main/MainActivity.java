@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 break;
             case R.id.navigationWithParams:// 传值并依赖注入
                 User user = new User("20190627", "老王");
-                ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY)
+                ARouter.getInstance().build(RouterHub.Login.LOGIN_ACTIVITY)
                         .withString("userId", user.getUserId())
                         .withString("name", user.getName())
                         .withParcelable("user", user)
