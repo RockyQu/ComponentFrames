@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
+import me.component.sdk.utils.Conts;
 import me.module.user.R;
 import me.module.user.R2;
 import me.mvp.frame.base.BaseActivity;
@@ -24,7 +25,7 @@ import me.mvp.frame.widget.Toaster;
 /**
  * 用户页面
  */
-@Route(path = RouterHub.User.USER_ACTIVITY)
+@Route(path = RouterHub.User.USER_ACTIVITY, extras = Conts.LOGIN_NEEDED)
 public class UserActivity extends BaseActivity<UserPresenter> implements IView {
 
     @BindView(R2.id.title)

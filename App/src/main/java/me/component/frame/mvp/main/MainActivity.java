@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import androidx.core.app.ActivityOptionsCompat;
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
+import me.logg.Logg;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;
@@ -53,7 +56,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 ARouter.getInstance().build(RouterHub.App.WEB_ACTIVITY).navigation();
                 break;
             case R.id.loginInterceptor:// 登录拦截
+                ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).navigation(this, new NavCallback() {
 
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        Logg.e("onArrival");
+                    }
+
+                    @Override
+                    public void onInterrupt(Postcard postcard) {
+                        Logg.e("onInterrupt");
+                    }
+                });
                 break;
             default:
                 break;
