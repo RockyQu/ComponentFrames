@@ -22,6 +22,7 @@ public class WebActivity extends BaseActivity {
     @Override
     public void create(Bundle savedInstanceState) {
         webView.setWebViewClient(new WebViewClient() {
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
