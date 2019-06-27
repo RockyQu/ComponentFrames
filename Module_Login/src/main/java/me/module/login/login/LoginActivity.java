@@ -26,7 +26,7 @@ import me.mvp.frame.widget.Toaster;
 /**
  * 登录页面
  */
-@Route(path = RouterHub.Login.LOGIN_LOGINACTIVITY)
+@Route(path = RouterHub.Login.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter> implements IView {
 
     @BindView(R2.id.edt_account)

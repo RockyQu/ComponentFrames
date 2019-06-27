@@ -15,14 +15,19 @@ public interface RouterHub {
     /**
      * App 分组
      */
-    String APP_MAINACTIVITY = APP + "/MainActivity";
+    interface App {
+        // 主页面
+        String MAIN_ACTIVITY = APP + "/MainActivity";
+        // 一个测试网页跳转的页面
+        String WEB_ACTIVITY = APP + "/WebActivity";
+    }
 
     /**
      * 登录分组
      */
     interface Login {
         // 用户登录页面
-        String LOGIN_LOGINACTIVITY = LOGIN + "/LoginActivity";
+        String LOGIN_ACTIVITY = LOGIN + "/LoginActivity";
     }
 
     /**
@@ -30,6 +35,6 @@ public interface RouterHub {
      */
     interface User {
         // 用户信息页面
-        String USER_USERACTIVITY = USER + "/UserActivity";
+        String USER_ACTIVITY = USER + "/UserActivity";
     }
 }

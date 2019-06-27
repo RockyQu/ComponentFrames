@@ -27,6 +27,7 @@
         <activity
             android:name=".mvp.main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".mvp.web.WebActivity" />
 
         <!-- 渠道配置 -->
         <meta-data

@@ -15,7 +15,7 @@ import me.mvp.frame.widget.Toaster;
 /**
  * 用户页面
  */
-@Route(path = RouterHub.User.USER_USERACTIVITY)
+@Route(path = RouterHub.User.USER_ACTIVITY)
 public class UserActivity extends BaseActivity<UserPresenter> implements IView {
 
     @Override

@@ -8,6 +8,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 
 import androidx.annotation.NonNull;
+
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
 import me.mvp.frame.base.BaseActivity;
@@ -15,7 +16,7 @@ import me.mvp.frame.frame.IView;
 import me.mvp.frame.frame.Message;
 import me.mvp.frame.widget.Toaster;
 
-@Route(path = RouterHub.APP_MAINACTIVITY)
+@Route(path = RouterHub.App.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<MainPresenter> implements IView, View.OnClickListener {
 
     @Override
@@ -26,7 +27,19 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.navigationWithParams:// 应用内跳转并传值
+            case R.id.navigation:// 应用内跳转
+
+                break;
+            case R.id.navigationWithParams:// 传值并依赖注入
+
+                break;
+            case R.id.navigationWithAnim:// 转场动画
+
+                break;
+            case R.id.navigationWithWeb:// URL 跳转
+
+                break;
+            case R.id.loginInterceptor:// 登录拦截
 
                 break;
             default:
