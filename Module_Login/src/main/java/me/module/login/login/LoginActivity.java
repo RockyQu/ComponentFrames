@@ -2,8 +2,10 @@ package me.module.login.login;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jakewharton.rxbinding3.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -11,7 +13,10 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
@@ -29,90 +34,27 @@ import me.mvp.frame.widget.Toaster;
 @Route(path = RouterHub.Login.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter> implements IView {
 
-    @BindView(R2.id.edt_account)
-    AppCompatEditText edtAccount;
-    @BindView(R2.id.edt_password)
-    AppCompatEditText edtPassword;
+    @BindView(R2.id.message)
+    AppCompatTextView message;
 
-    @BindView(R2.id.btn_submit)
-    AppCompatButton btnSubmit;
-
-    // 当前登录用户信息
-    private User user;
-
-    @SuppressLint("CheckResult")
     @Override
     public void create(Bundle savedInstanceState) {
-        user = (User) component.extras().get(LoginActivity.class.getName());
-        if (user != null) {
 
-        }
-
-        edtAccount.setText("18012345678");
-        edtPassword.setText("123456");
-
-        // 登录
-        RxView.clicks(btnSubmit)
-                .throttleFirst(1000, TimeUnit.MILLISECONDS)
-                .subscribe(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object v) {
-                        LoginActivity.this.login();
-                    }
-                });
     }
 
-    /**
-     * 登录
-     */
-    public void login() {
-        if (inputCheck(R.id.btn_submit)) {
-            presenter.login(Message.obtain(this), edtAccount.getText().toString().trim(), edtPassword.getText().toString().trim());
-        }
-    }
-
-    /**
-     * 输入项合法性检查
-     *
-     * @param flag Flag
-     * @return
-     */
-    private boolean inputCheck(int flag) {
-        if (flag == R.id.btn_submit) {
-            if (StringUtils.isEmpty(edtAccount.getText().toString().trim())) {
-                Toaster.with(this).setMessage("输入手机号码").show();
-                return false;
-            }
-
-            if (StringUtils.isEmpty(edtPassword.getText().toString().trim())) {
-                Toaster.with(this).setMessage("输入密码").show();
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * 设置View状态
-     *
-     * @param view    View
-     * @param enabled 显示状态
-     * @param message 文字说明
-     */
-    private void setViewStatus(AppCompatButton view, boolean enabled, String message) {
-        view.setEnabled(enabled);
-        view.setText(message);
+    @OnClick({R2.id.message})
+    public void onClick(View v) {
+        finish();
     }
 
     @Override
     public void showLoading() {
-        setViewStatus(btnSubmit, false, "加载中");
+
     }
 
     @Override
     public void hideLoading() {
-        setViewStatus(btnSubmit, true, "加载完成");
+
     }
 
     @Override

@@ -14,7 +14,7 @@ import me.mvp.frame.frame.IPresenter;
 /**
  * WebView 页面
  */
-@Route(path = RouterHub.Web.WEB_ACTIVITY)
+@Route(path = RouterHub.App.WEB_ACTIVITY)
 public class WebActivity extends BaseActivity {
 
     @BindView(R.id.webView)
