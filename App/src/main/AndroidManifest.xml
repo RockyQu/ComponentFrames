@@ -72,8 +72,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="m.aliyun.com"
-                    android:scheme="arouter" />
+                    android:host="github.com"
+                    android:scheme="router" />
             </intent-filter>
 
             <!-- App Links -->
@@ -84,10 +84,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="m.aliyun.com"
+                    android:host="github.com"
                     android:scheme="http" />
                 <data
-                    android:host="m.aliyun.com"
+                    android:host="github.com"
                     android:scheme="https" />
             </intent-filter>
         </activity>

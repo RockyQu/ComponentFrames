@@ -21,14 +21,6 @@ public class WebActivity extends BaseActivity {
 
     @Override
     public void create(Bundle savedInstanceState) {
-        webView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-        });
         webView.loadUrl("file:///android_asset/schame-test.html");
     }
 

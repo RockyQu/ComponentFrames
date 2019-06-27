@@ -55,9 +55,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements IView
         ARouter.getInstance().inject(this);
 
         String params = String.format(
-                "id = %s, name = %s\nuser = %s",
-                id,
-                name,
+                "user = %s",
                 component.getGson().toJson(user)
         );
 

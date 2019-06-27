@@ -20,8 +20,6 @@ public interface RouterHub {
         String MAIN_ACTIVITY = APP + "/MainActivity";
         // 一个测试网页跳转的页面
         String WEB_ACTIVITY = APP + "/WebActivity";
-        // 外部跳转测试页面
-        String SCHEME_ACTIVITY = APP + "/SchemeActivity";
     }
 
     /**
