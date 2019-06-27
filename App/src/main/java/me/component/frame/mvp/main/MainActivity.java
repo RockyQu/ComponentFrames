@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                         .navigation();
                 break;
             case R.id.navigationWithWeb:// URL 跳转
-
+                ARouter.getInstance().build(RouterHub.App.WEB_ACTIVITY).navigation();
                 break;
             case R.id.loginInterceptor:// 登录拦截
 

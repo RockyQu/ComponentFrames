@@ -1,7 +1,9 @@
 package me.component.frame.mvp.web;
 
 import android.os.Bundle;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
@@ -11,9 +13,6 @@ import me.component.sdk.core.RouterHub;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IPresenter;
 
-/**
- * WebView 页面
- */
 @Route(path = RouterHub.App.WEB_ACTIVITY)
 public class WebActivity extends BaseActivity {
 
@@ -22,6 +21,13 @@ public class WebActivity extends BaseActivity {
 
     @Override
     public void create(Bundle savedInstanceState) {
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
         webView.loadUrl("file:///android_asset/schame-test.html");
     }
 
@@ -32,6 +38,6 @@ public class WebActivity extends BaseActivity {
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_welcome;
+        return R.layout.activity_web;
     }
 }
