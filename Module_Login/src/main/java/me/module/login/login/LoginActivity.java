@@ -21,6 +21,7 @@ import butterknife.OnClick;
 import io.reactivex.functions.Consumer;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
+import me.logg.Logg;
 import me.module.login.R;
 import me.module.login.R2;
 import me.mvp.frame.base.BaseActivity;
@@ -39,13 +40,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements IView
     AppCompatTextView title;
     @BindView(R2.id.message)
     AppCompatTextView message;
-
-    // 用户 Id
-    @Autowired(name = "userId", required = true)
-    String id;
-    // 名字
-    @Autowired
-    String name;
 
     @Autowired
     User user;

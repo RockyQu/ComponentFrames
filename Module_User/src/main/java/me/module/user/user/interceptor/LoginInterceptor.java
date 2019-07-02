@@ -63,9 +63,7 @@ public class LoginInterceptor implements IInterceptor {
                             public void onClick(DialogInterface dialog, int which) {
                                 // 在拦截器中添加附加参数
                                 User user = new User("20190628", "小王");
-                                postcard.withString("userId", user.getUserId())
-                                        .withString("name", user.getName())
-                                        .withParcelable("user", user);
+                                postcard.withObject("user", user);
                                 // 继续执行
                                 callback.onContinue(postcard);
                             }

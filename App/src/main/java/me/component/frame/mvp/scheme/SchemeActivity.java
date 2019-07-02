@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
+import me.logg.Logg;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IPresenter;
 

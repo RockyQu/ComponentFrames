@@ -1,6 +1,7 @@
 package me.component.frame.mvp.main;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
             case R.id.navigationWithParams:// 传值并依赖注入
                 User user = new User("201906272129", "老王");
                 ARouter.getInstance().build(RouterHub.Login.LOGIN_ACTIVITY)
-                        .withParcelable("user", user)
+                        .withObject("user", user)
                         .navigation();
                 break;
             case R.id.navigationWithAnim:// 转场动画
