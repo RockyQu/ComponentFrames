@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.navigation:// 应用内跳转
-                ARouter.getInstance().build(RouterHub.Login.LOGIN_ACTIVITY).navigation();
+                ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).greenChannel().navigation();
                 break;
             case R.id.navigationWithParams:// 传值并依赖注入
                 User user = new User("201906272129", "老王");

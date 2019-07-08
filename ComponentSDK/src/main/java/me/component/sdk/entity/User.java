@@ -10,18 +10,18 @@ import androidx.room.PrimaryKey;
  * 用户信息
  */
 @Entity(tableName = "User")
-public class User{
+public class User {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    int id;
 
     // ID
     @SerializedName("userId")
-    private String userId;
+    String userId;
 
     // 名字
     @ColumnInfo(name = "name")
-    private String name;
+    String name;
 
     public User() {
 
