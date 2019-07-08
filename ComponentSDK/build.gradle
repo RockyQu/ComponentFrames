@@ -13,7 +13,8 @@ android {
         // 指定room.schemaLocation 生成的文件路径
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+                arguments = [AROUTER_MODULE_NAME: project.getName(), "room.schemaLocation": "$projectDir/schemas".toString()]
+//                arguments = []
             }
         }
     }
@@ -56,6 +57,9 @@ dependencies {
         exclude module: 'legacy-support-v4'
         exclude module: 'annotation'
     }
+    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    // 分包
     api rootProject.ext.dependencies["multidex"]
 
     // DB
