@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).greenChannel().navigation();
                 break;
             case R.id.navigationWithParams:// 传值并依赖注入
-                User user = new User("201906272129", "老王");
+                User user = new User("201906272129", "老王 来自 MainActivity");
                 ARouter.getInstance().build(RouterHub.Login.LOGIN_ACTIVITY)
                         .withObject("user", user)
                         .navigation();
@@ -54,6 +54,18 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
             case R.id.navigationWithWeb:// URL 跳转
                 ARouter.getInstance().build(RouterHub.App.WEB_ACTIVITY).navigation();
                 break;
+            case R.id.callService:// 调用服务
+
+                break;
+            case R.id.callSingle:// 调用单类
+
+                break;
+            case R.id.aloneDegrade:// 单独降级
+
+                break;
+            case R.id.globalDegrade:// 全局降级
+
+                break;
             case R.id.loginInterceptor:// 登录拦截
                 ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).navigation(this, new NavCallback() {
 
@@ -67,6 +79,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                         Logg.e("onInterrupt");
                     }
                 });
+                break;
+            case R.id.getFragment:// Fragment 组件化
+
                 break;
             default:
                 break;
