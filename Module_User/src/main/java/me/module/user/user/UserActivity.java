@@ -33,13 +33,6 @@ public class UserActivity extends BaseActivity<UserPresenter> implements IView {
     @BindView(R2.id.message)
     AppCompatTextView message;
 
-    // 用户 Id
-    @Autowired(name = "userId", required = true)
-    String id;
-    // 名字
-    @Autowired
-    String name;
-
     @Autowired
     User user;
 
@@ -55,7 +48,7 @@ public class UserActivity extends BaseActivity<UserPresenter> implements IView {
         message.setText(params);
     }
 
-    @OnClick({R2.id.message})
+    @OnClick({R2.id.title})
     public void onClick(View v) {
         finish();
     }

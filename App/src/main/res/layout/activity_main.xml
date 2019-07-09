@@ -1,104 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="16dp">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="基本操作"
-            android:textColor="@android:color/white" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigation"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="应用内跳转" />
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigationWithParams"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="传值并依赖注入" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="基本操作"
+                android:textColor="@android:color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigationWithAnim"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="转场动画" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="应用内跳转" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/navigationWithWeb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="URL 跳转" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/navigationWithParams"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="传值并依赖注入" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="进阶用法"
-            android:textColor="@android:color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/navigationWithAnim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="转场动画" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/callService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="调用服务" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/navigationWithWeb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="URL 跳转" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/aloneDegrade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="单独降级" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="进阶用法"
+                android:textColor="@android:color/white" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/globalDegrade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="全局降级" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/callService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="调用服务" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:text="应用实例"
-            android:textColor="@android:color/white" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/aloneDegrade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="单独降级" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginInterceptor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="登录拦截" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/globalDegrade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="全局降级" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/getFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClick"
-            android:text="Fragment 组件化"
-            android:textAllCaps="false" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="应用实例"
+                android:textColor="@android:color/white" />
 
-    </LinearLayout>
-</ScrollView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/loginInterceptor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="登录拦截" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/getFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClick"
+                android:text="Fragment 组件化"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

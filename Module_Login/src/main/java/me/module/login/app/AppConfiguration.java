@@ -64,11 +64,6 @@ public class AppConfiguration implements ConfigModule {
 
     @Override
     public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
-        lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
-            @Override
-            public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-                ((RefWatcher) ((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
-            }
-        });
+
     }
 }

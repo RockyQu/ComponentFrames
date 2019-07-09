@@ -1,10 +1,7 @@
 package me.component.frame.mvp.main;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.Postcard;
@@ -15,6 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
@@ -41,9 +39,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).greenChannel().navigation();
                 break;
             case R.id.navigationWithParams:// 传值并依赖注入
-                User user = new User("201906272129", "老王 来自 MainActivity");
                 ARouter.getInstance().build(RouterHub.Login.LOGIN_ACTIVITY)
-                        .withObject("user", user)
+                        .withObject("user", new User("201906272129", "老王 来自 MainActivity"))
                         .navigation();
                 break;
             case R.id.navigationWithAnim:// 转场动画
@@ -103,9 +100,13 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 });
                 break;
             case R.id.getFragment:// Fragment 组件化
-                Fragment fragment = (Fragment) ARouter.getInstance().build(RouterHub.User.Fragment.USER_FRAGMENT).navigation();
+                Fragment fragment = (Fragment) ARouter.getInstance().build(RouterHub.User.Fragment.USER_FRAGMENT)
+                        .withObject("user", new User("201906272129", " 向 Fragment 传参，参数来自 MainActivity"))
+                        .navigation();
                 if (fragment != null) {
-
+                    FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.fragment, fragment);
+                    ft.commit();
                 }
                 break;
             default:
