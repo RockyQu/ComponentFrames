@@ -1,6 +1,7 @@
 package me.module.user.user.fragment;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.appcompat.widget.AppCompatTextView;
@@ -23,7 +24,7 @@ import me.mvp.frame.base.BaseFragment;
 import me.mvp.frame.frame.IPresenter;
 
 @Route(path = RouterHub.User.Fragment.USER_FRAGMENT)
-public class UserFragment extends BaseFragment {
+public class UserFragment extends BaseFragment implements View.OnTouchListener {
 
     @BindView(R2.id.title)
     AppCompatTextView title;
@@ -39,6 +40,9 @@ public class UserFragment extends BaseFragment {
 
     @Override
     public void create(Bundle savedInstanceState) {
+        // 防止点击穿透
+        getView().setOnTouchListener(this);
+
         ARouter.getInstance().inject(this);
 
         String params = String.format(
@@ -54,6 +58,11 @@ public class UserFragment extends BaseFragment {
         FragmentTransaction ft = this.getFragmentManager().beginTransaction();
         ft.remove(this);
         ft.commit();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        return true;
     }
 
     @Override
