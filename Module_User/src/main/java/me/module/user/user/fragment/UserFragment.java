@@ -24,7 +24,7 @@ import me.mvp.frame.base.BaseFragment;
 import me.mvp.frame.frame.IPresenter;
 
 @Route(path = RouterHub.User.Fragment.USER_FRAGMENT)
-public class UserFragment extends BaseFragment implements View.OnTouchListener {
+public class UserFragment extends BaseFragment{
 
     @BindView(R2.id.title)
     AppCompatTextView title;
@@ -40,9 +40,6 @@ public class UserFragment extends BaseFragment implements View.OnTouchListener {
 
     @Override
     public void create(Bundle savedInstanceState) {
-        // 防止点击穿透
-        getView().setOnTouchListener(this);
-
         ARouter.getInstance().inject(this);
 
         String params = String.format(
@@ -58,11 +55,6 @@ public class UserFragment extends BaseFragment implements View.OnTouchListener {
         FragmentTransaction ft = this.getFragmentManager().beginTransaction();
         ft.remove(this);
         ft.commit();
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return true;
     }
 
     @Override
