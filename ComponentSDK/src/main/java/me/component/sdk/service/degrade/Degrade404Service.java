@@ -43,7 +43,6 @@ public class Degrade404Service implements DegradeService {
                         .setTitle("全局降级")
                         .setMessage("没有找到目标页面，你可以定义自己的逻辑，比如显示一个错误页面")
                         .setNegativeButton("确定", null)
-                        .setPositiveButton("取消", null)
                         .create()
                         .show();
             }
