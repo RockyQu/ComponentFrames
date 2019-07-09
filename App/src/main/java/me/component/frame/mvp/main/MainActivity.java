@@ -69,6 +69,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
 
                     @Override
                     public void onLost(Postcard postcard) {
+                        // 单独降级，如果目标未找到，回调这个方法，在这里你可以处理自己的逻辑，比如显示一个错误页面
+                        // 单独降级的方式优先于全局降级
                         Logg.e("目标未找到");
                     }
 

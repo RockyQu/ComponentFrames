@@ -12,6 +12,9 @@ public interface RouterHub {
     String LOGIN = "/login";// 登录模块
     String USER = "/user";// 用户模块
 
+    // 全局降级
+    String DEGRADE_SERVICE = "/degrade/service";
+
     /**
      * App 分组
      */
