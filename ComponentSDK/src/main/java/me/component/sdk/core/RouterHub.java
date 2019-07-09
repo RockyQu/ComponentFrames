@@ -36,5 +36,13 @@ public interface RouterHub {
     interface User {
         // 用户信息页面
         String USER_ACTIVITY = USER + "/UserActivity";
+
+        interface Fragment {
+            String USER_FRAGMENT = USER + "/UserFragment";
+        }
+
+        interface Service {
+            String USER_SERVICE = USER + "/UserService";
+        }
     }
 }

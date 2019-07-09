@@ -14,10 +14,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.Fragment;
 
 import me.component.frame.R;
 import me.component.sdk.core.RouterHub;
 import me.component.sdk.entity.User;
+import me.component.sdk.service.IUserService;
 import me.logg.Logg;
 import me.mvp.frame.base.BaseActivity;
 import me.mvp.frame.frame.IView;
@@ -55,16 +57,34 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 ARouter.getInstance().build(RouterHub.App.WEB_ACTIVITY).navigation();
                 break;
             case R.id.callService:// 调用服务
-
-                break;
-            case R.id.callSingle:// 调用单类
-
+                ARouter.getInstance().navigation(IUserService.class).transferUser(new User("201907092129", "UserService 来自 调用服务"));
                 break;
             case R.id.aloneDegrade:// 单独降级
+                ARouter.getInstance().build("/xxx/xxx").navigation(this, new NavCallback() {
 
+                    @Override
+                    public void onFound(Postcard postcard) {
+                        Logg.e("找到目标");
+                    }
+
+                    @Override
+                    public void onLost(Postcard postcard) {
+                        Logg.e("目标未找到");
+                    }
+
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        Logg.e("跳转结束");
+                    }
+
+                    @Override
+                    public void onInterrupt(Postcard postcard) {
+                        Logg.e("跳转被拦截");
+                    }
+                });
                 break;
             case R.id.globalDegrade:// 全局降级
-
+                ARouter.getInstance().build("/xxx/xxx").navigation();
                 break;
             case R.id.loginInterceptor:// 登录拦截
                 ARouter.getInstance().build(RouterHub.User.USER_ACTIVITY).navigation(this, new NavCallback() {
@@ -81,7 +101,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IView, 
                 });
                 break;
             case R.id.getFragment:// Fragment 组件化
+                Fragment fragment = (Fragment) ARouter.getInstance().build(RouterHub.User.Fragment.USER_FRAGMENT).navigation();
+                if (fragment != null) {
 
+                }
                 break;
             default:
                 break;

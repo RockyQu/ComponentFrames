@@ -1,4 +1,4 @@
-package me.component.sdk.utils;
+package me.component.sdk.service;
 
 import android.content.Context;
 
@@ -11,9 +11,8 @@ import me.mvp.frame.di.component.AppComponent;
 import me.mvp.frame.utils.AppUtils;
 
 /**
- * 如果你使用 withObject 传值的话
- * 需要定义这个类，并实现接口 {@link SerializationService} 在下面三个方法添加你想支持的自定义 Json 解析
- * 我的项目里没有用到 FastJson，这里我改成了 Gson 的实现
+ * 如果你使用 withObject 传值的话需要定义这个类，并实现接口 {@link SerializationService} 在下面三个方法
+ * 添加你想支持的自定义 Json 解析，我的项目里没有用到 FastJson，这里我改成了 Gson 的实现
  */
 @Route(path = "/service/json")
 public class JsonService implements SerializationService {
